@@ -87,6 +87,9 @@
                 <div id='app'>
                     <example-component>
                     </example-component>
+                    <carousel-control></carousel-control>
+                    <carousel-control></carousel-control>
+                    <i class="carousel-control fa fa-2x fa-chevron-left"></i>
                 </div>
             </div>
         </div>
