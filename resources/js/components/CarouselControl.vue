@@ -1,13 +1,16 @@
 <template>
     <div>
-        <i :class="classes" @click="clicked">dfv</i>
-        <p>asd</p>
+        <hr>
+        <i :class="classes"  @click="clicked"></i>
+        <hr>
     </div>
 </template>
 
 <script>
     export default {
-        props: [ 'dir' ],
+        name: 'CarouselControl',
+
+        props: ['dir'],
 
         computed: {
             classes() {
@@ -16,17 +19,18 @@
         },
         
         methods: {
-        clicked() {
-            this.$emit('change-image', this.dir === 'left' ? -1 : 1);
+            clicked() {
+                alert("asdasd");
+                this.$emit('counter', this.dir === 'left' ? -1 : 1);
+            }
         }
     }
-}
 </script>
 
 <style>
 .carousel-control {
         padding:1rem;
-        color:#ffffff;
+        color:#d35656;
         opacity:0.85
     }
     @media (min-width:744px) {

@@ -1770,7 +1770,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'CarouselControl',
   props: ['dir'],
   computed: {
     classes: function classes() {
@@ -1779,7 +1781,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     clicked: function clicked() {
-      this.$emit('change-image', this.dir === 'left' ? -1 : 1);
+      alert("asdasd");
+      this.$emit('counter', this.dir === 'left' ? -1 : 1);
     }
   }
 });
@@ -1795,6 +1798,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CarouselControl_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CarouselControl.vue */ "./resources/js/components/CarouselControl.vue");
 //
 //
 //
@@ -1811,9 +1815,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    CarouselControl: _CarouselControl_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      counter: 0
+    };
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  methods: {
+    changeValue: function changeValue(val) {
+      this.counter = this.val;
+      alert("asd");
+    }
   }
 });
 
@@ -6276,7 +6298,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.carousel-control {\n        padding:1rem;\n        color:#ffffff;\n        opacity:0.85\n}\n@media (min-width:744px) {\n.carousel-control {\n            font-size:3rem;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.carousel-control {\n        padding:1rem;\n        color:#d35656;\n        opacity:0.85\n}\n@media (min-width:744px) {\n.carousel-control {\n            font-size:3rem;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -37579,11 +37601,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("i", { class: _vm.classes, on: { click: _vm.clicked } }, [
-      _vm._v("dfv")
-    ]),
+    _c("hr"),
     _vm._v(" "),
-    _c("p", [_vm._v("asd")])
+    _c("i", { class: _vm.classes, on: { click: _vm.clicked } }),
+    _vm._v(" "),
+    _c("hr")
   ])
 }
 var staticRenderFns = []
@@ -37608,28 +37630,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c(
+        "div",
+        { staticClass: "col-md-8" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("h3", [_vm._v(_vm._s(this.counter))]),
+          _vm._v(" "),
+          _c("carousel-control", {
+            attrs: { dir: "right" },
+            on: { counter: _vm.changeValue }
+          }),
+          _vm._v(" "),
+          _c("carousel-control", {
+            attrs: { dir: "left" },
+            on: { counter: _vm.changeValue }
+          })
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component!!!")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _vm._v("Example Component!!!")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _vm._v(
+          "\n                    I'm an example component.\n                "
+        )
       ])
     ])
   }

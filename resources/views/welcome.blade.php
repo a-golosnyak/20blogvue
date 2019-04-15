@@ -7,6 +7,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Laravel</title>
 
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
@@ -85,11 +87,8 @@
                     Laravel_!
                 </div>
                 <div id='app'>
-                    <example-component>
-                    </example-component>
-
-                    <carousel-control>
-                    </carousel-control>
+                    <example-component></example-component>
+                    
                     <i class="carousel-control fa fa-2x fa-chevron-left"></i>
                 </div>
             </div>

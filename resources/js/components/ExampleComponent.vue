@@ -9,16 +9,33 @@
                         I'm an example component.
                     </div>
                 </div>
+                <h3>{{this.counter}}</h3>
+                <carousel-control dir="right" @counter="changeValue"></carousel-control>
+                <carousel-control dir="left"  @counter="changeValue"></carousel-control>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import CarouselControl from './CarouselControl.vue'
+
     export default {
+        components:{
+            CarouselControl
+        },
+        data: () => ({
+            counter : 0,
+        }),
         mounted() {
             console.log('Component mounted.')
-        }
+        },
+        methods: {
+            changeValue(val){
+                this.counter = this.val;
+                alert("asd");
+            },
+        },
     }
 </script>
  
