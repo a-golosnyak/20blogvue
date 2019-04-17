@@ -28,13 +28,12 @@
 
 <style>
 .carousel-control {
-        padding:1rem;
-        color:rgb(107, 202, 174);
+        color:rgb(115, 140, 255);
         opacity:0.85;
         cursor: pointer;
-        font-size:1rem;
-        width: 20px;
+        font: size 15px;
     }
+
     @media (min-width:744px) {
         .carousel-control {
             font-size:3rem;

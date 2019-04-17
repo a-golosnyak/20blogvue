@@ -1819,6 +1819,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1826,15 +1834,29 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      counter: 0
+      counter: 0,
+      images: ['/images/2/Image_1.jpg', '/images/2/Image_2.jpg', '/images/2/Image_3.jpg', '/images/2/Image_4.jpg']
     };
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  computed: {
+    image: function image() {
+      return this.images[this.counter];
+    }
   },
   methods: {
     changeValue: function changeValue(val) {
       this.counter += val;
+    },
+    changeImage: function changeImage(val) {
+      letnewVal = this.index + parseInt(val);
+
+      if (newVal < 0) {
+        this.index = this.images.length - 1;
+      } else if (newVal === this.images.length) {
+        this.index = 0;
+      } else {
+        this.index = newVal;
+      }
     }
   }
 });
@@ -6298,7 +6320,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.carousel-control {\n        padding:1rem;\n        color:rgb(107, 202, 174);\n        opacity:0.85;\n        cursor: pointer;\n        font-size:1rem;\n        width: 20px;\n}\n@media (min-width:744px) {\n.carousel-control {\n            font-size:3rem;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.carousel-control {\n        color:rgb(115, 140, 255);\n        opacity:0.85;\n        cursor: pointer;\n        font: size 15px;\n}\n@media (min-width:744px) {\n.carousel-control {\n            font-size:3rem;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -6317,7 +6339,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card{\n    background-color: aquamarine;\n}\n", ""]);
+exports.push([module.i, "\n.image-carousel {\n    height:100%;\n    margin-top: 0;\n    position:relative;\n    display:flex;\n    align-items:center;\n    justify-content:center;\n}\n.image-carousel img {\n    width:100%;\n}\n.image-carousel .controls {\n    position:absolute;\n    width:100%;\n    display:flex;\n    justify-content:space-between;\n}\n", ""]);
 
 // exports
 
@@ -37635,43 +37657,40 @@ var render = function() {
     [
       _c("div", { staticClass: "row justify-content-center" }, [
         _c("div", { staticClass: "col-md-8" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("h3", [_vm._v(_vm._s(this.counter))])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("carousel-control", {
-        attrs: { dir: "right" },
-        on: { counterAction: _vm.changeValue }
-      }),
-      _vm._v(" "),
-      _c("carousel-control", {
-        attrs: { dir: "left" },
-        on: { counterAction: _vm.changeValue }
-      })
-    ],
-    1
+          _c("div", { staticClass: "image-carousel" }, [
+            _c("img", { attrs: { src: _vm.image } }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "controls" },
+              [
+                _c("carousel-control", {
+                  attrs: { dir: "left" },
+                  on: {
+                    "change-image": _vm.changeImage,
+                    counterAction: _vm.changeValue
+                  }
+                }),
+                _vm._v(" "),
+                _c("carousel-control", {
+                  attrs: { dir: "right" },
+                  on: {
+                    "change-image": _vm.changeImage,
+                    counterAction: _vm.changeValue
+                  }
+                })
+              ],
+              1
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("h3", [_vm._v(_vm._s(this.counter))])
+      ])
+    ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header" }, [
-        _vm._v("Example Component!!!")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _vm._v(
-          "\n                    I'm an example component.\n                "
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Laravel</title>
+        <title>VueBlog</title>
 
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
@@ -16,7 +16,28 @@
     </head>
     <body>
         <div class=" position-ref full-height">
-            @if (Route::has('login'))
+            <div class="content mt-5">
+                <div class="title m-t-mb ">
+                    Laravel_
+                </div>
+                <div id='app'>
+                    
+                    
+                    <example-component></example-component>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="{{URL::asset('js/app.js')}}"></script>
+    </body>
+</html>
+
+
+
+
+
+{{--
+    
+                @if (Route::has('login'))
                 <div class="top-right links" class="">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -29,17 +50,5 @@
                     @endauth
                 </div>
             @endif
-            <i class="carousel-control fa fa-2x fa-chevron-right" ></i>
-            <div class="content mt-5">
-                <div class="title m-t-mb ">
-                    Laravel_
-                </div>
-                <div id='app'>
-                    
-                    <example-component></example-component>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript" src="{{URL::asset('js/app.js')}}"></script>
-    </body>
-</html>
+        
+--}}
