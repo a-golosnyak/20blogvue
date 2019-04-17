@@ -1,8 +1,8 @@
 <template>
     <div>
-        <hr>
-        <i :class="classes"  @click="clicked"></i>
-        <hr>
+        <div @click="clicked">
+            <i :class="classes" ></i>
+        </div>
     </div>
 </template>
 
@@ -19,10 +19,9 @@
         },
         
         methods: {
-            clicked() {
-                alert("asdasd");
-                this.$emit('counter', this.dir === 'left' ? -1 : 1);
-            }
+            clicked: function() {
+                this.$emit('counterAction', this.dir === 'left' ? -1 : 1);
+            },
         }
     }
 </script>
@@ -30,8 +29,11 @@
 <style>
 .carousel-control {
         padding:1rem;
-        color:#d35656;
-        opacity:0.85
+        color:rgb(107, 202, 174);
+        opacity:0.85;
+        cursor: pointer;
+        font-size:1rem;
+        width: 20px;
     }
     @media (min-width:744px) {
         .carousel-control {

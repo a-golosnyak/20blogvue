@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" style="background-color: lightgrey;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -10,11 +10,13 @@
                     </div>
                 </div>
                 <h3>{{this.counter}}</h3>
-                <carousel-control dir="right" @counter="changeValue"></carousel-control>
-                <carousel-control dir="left"  @counter="changeValue"></carousel-control>
-            </div>
+                 </div>
         </div>
+        <carousel-control dir="right" @counterAction="changeValue"></carousel-control>
+                <carousel-control dir="left"  @counterAction="changeValue"></carousel-control>
+           
     </div>
+    
 </template>
 
 <script>
@@ -31,9 +33,8 @@ import CarouselControl from './CarouselControl.vue'
             console.log('Component mounted.')
         },
         methods: {
-            changeValue(val){
-                this.counter = this.val;
-                alert("asd");
+            changeValue: function(val){
+                this.counter += val;
             },
         },
     }
