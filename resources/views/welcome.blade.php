@@ -22,7 +22,7 @@
                 </div>
                 <div id='app'>
                     
-                    
+                    <image-carousel></image-carousel>
                     <example-component></example-component>
                 </div>
             </div>
