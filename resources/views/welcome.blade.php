@@ -21,8 +21,11 @@
                     Laravel_
                 </div>
                 <div id='app'>
+
+                    <modal-window>
+                        <image-carousel></image-carousel>
+                    </modal-window>
                     
-                    <image-carousel></image-carousel>
                     <example-component></example-component>
                 </div>
             </div>

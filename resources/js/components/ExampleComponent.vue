@@ -3,10 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
             
-                <button
-                    @click="callModal"
-                >
-                </button>        
+                <button type='submit' >Применить</button>        
                 
             </div>
             <h3>{{this.counter}}</h3>
@@ -22,7 +19,9 @@ import CarouselControl from './CarouselControl.vue'
 
         },
         data () {
-
+            return {
+                counter : 0,
+            }
         },
         computed:{
 
