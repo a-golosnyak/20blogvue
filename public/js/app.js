@@ -1811,6 +1811,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
@@ -1820,7 +1827,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {},
-  methods: {}
+  methods: {
+    openModal: function openModal() {
+      this.$refs.imagemodal.modalOpen = true;
+    }
+  }
 });
 
 /***/ }),
@@ -1927,7 +1938,6 @@ __webpack_require__.r(__webpack_exports__);
       modalOpen: false
     };
   },
-  computed: {},
   methods: {
     escapeKeyListener: function escapeKeyListener(evt) {
       if (evt.keyCode === 27 && this.modalOpen) {
@@ -6451,7 +6461,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#modal {\n    display:none;\n    position:fixed;\n    top:0;\n    right:0;\n    bottom:0;\n    left:0;\n    z-index:2000;\n    background-color: rgba(0,0,0,0.85);\n}\n#modal.show {\n display:block;\n}\nbody.modal-open {\n    overflow:hidden;\n    position:fixed;\n}\n.modal-close {\n    cursor:pointer;\n    position:absolute;\n    right:0;\n    top:0;\n    padding:0px 28px 8px;\n    font-size:4em;\n    width:auto;\n    height:auto;\n    background:transparent;\n    border:0;\n    outline:none;\n    color:#ffffff;\n    z-index:1000;\n    font-weight:100;\n    line-height:1;\n}\n.modal-content {\n    height:100%;\n    max-width:105vh;\n    padding-top:12vh;\n    margin:0 auto;\n    position:relative;\n}\n", ""]);
+exports.push([module.i, "\n#modal {\n    display:none;\n    position:fixed;\n    top:0;\n    right:0;\n    bottom:0;\n    left:0;\n    z-index:2000;\n    background-color: rgba(0,0,0,0.5);\n}\n#modal.show {\n display:block;\n}\nbody.modal-open {\n    overflow:hidden;\n    position:fixed;\n}\n.modal-close {\n    cursor:pointer;\n    position:absolute;\n    right:0;\n    top:0;\n    padding:0px 28px 8px;\n    font-size:4em;\n    width:auto;\n    height:auto;\n    background:transparent;\n    border:0;\n    outline:none;\n    color:#ffffff;\n    z-index:1;\n    font-weight:100;\n    line-height:1;\n}\n.modal-content {\n    height:100%;\n    max-width:105vh;\n    padding-top:12vh;\n    margin:0 auto;\n    position:relative;\n}\n", ""]);
 
 // exports
 
@@ -37798,23 +37808,25 @@ var render = function() {
     },
     [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _vm._m(0),
+        _c(
+          "div",
+          { staticClass: "col-md-8" },
+          [
+            _c("button", { on: { click: _vm.openModal } }, [
+              _vm._v("Применить")
+            ]),
+            _vm._v(" "),
+            _c("modal-window", { ref: "imagemodal" }, [_c("image-carousel")], 1)
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("h3", [_vm._v(_vm._s(this.counter))])
       ])
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-8" }, [
-      _c("button", { attrs: { type: "submit" } }, [_vm._v("Применить")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -50406,15 +50418,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/components/ModalWindow.vue ***!
   \*************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ModalWindow_vue_vue_type_template_id_2ffcfd3c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalWindow.vue?vue&type=template&id=2ffcfd3c& */ "./resources/js/components/ModalWindow.vue?vue&type=template&id=2ffcfd3c&");
 /* harmony import */ var _ModalWindow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalWindow.vue?vue&type=script&lang=js& */ "./resources/js/components/ModalWindow.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ModalWindow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ModalWindow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _ModalWindow_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModalWindow.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/ModalWindow.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _ModalWindow_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModalWindow.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/ModalWindow.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -50446,7 +50457,7 @@ component.options.__file = "resources/js/components/ModalWindow.vue"
 /*!**************************************************************************!*\
   !*** ./resources/js/components/ModalWindow.vue?vue&type=script&lang=js& ***!
   \**************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -3,7 +3,7 @@
         id="modal" 
         :class="{ show : modalOpen }"
         >
-        <button @click="modalOpen =false" class="modal-close">&times;</button>
+        <button @click="modalOpen=false" class="modal-close">&times;</button>
         <div class="modal-content">
             <slot></slot>
         </div>
@@ -16,9 +16,6 @@
             return {
                 modalOpen: false
             }
-        },
-        computed:{
-
         },
         methods: {
             escapeKeyListener(evt) {
@@ -56,7 +53,7 @@
         bottom:0;
         left:0;
         z-index:2000;
-        background-color: rgba(0,0,0,0.85);
+        background-color: rgba(0,0,0,0.5);
     }
     
     #modal.show {
@@ -81,7 +78,7 @@
         border:0;
         outline:none;
         color:#ffffff;
-        z-index:1000;
+        z-index:1;
         font-weight:100;
         line-height:1;
     }

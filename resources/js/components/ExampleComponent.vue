@@ -3,7 +3,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
             
-                <button type='submit' >Применить</button>        
+                <button 
+                    @click="openModal">Применить</button>  
+                
+                <modal-window
+                    ref='imagemodal'
+                >
+                    <image-carousel></image-carousel>
+                </modal-window>      
                 
             </div>
             <h3>{{this.counter}}</h3>
@@ -27,8 +34,9 @@ import CarouselControl from './CarouselControl.vue'
 
         },
         methods: {
-
-            
+            openModal(){
+                this.$refs.imagemodal.modalOpen = true;
+            }    
         },
     }
 </script>
