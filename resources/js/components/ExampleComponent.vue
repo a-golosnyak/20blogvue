@@ -1,20 +1,26 @@
 <template>
-    <div class="container" style="background-color: lightgrey;">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+    <div>
+        <header
             
-                <button 
-                    @click="openModal">Применить</button>  
+        >
+        </header>
+        <div class="container" style="background-color: lightgrey;">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
                 
-                <modal-window
-                    ref='imagemodal'
-                >
-                    <image-carousel></image-carousel>
-                </modal-window>      
-                
-            </div>
-            <h3>{{this.counter}}</h3>
-        </div>       
+                    <button 
+                        @click="openModal">Применить</button>  
+                    
+                    <modal-window
+                        ref='imagemodal'
+                    >
+                        <image-carousel></image-carousel>
+                    </modal-window>      
+                    
+                </div>
+                <h3>{{this.counter}}</h3>
+            </div>       
+        </div>
     </div>
 </template>
 
@@ -28,6 +34,9 @@ import CarouselControl from './CarouselControl.vue'
         data () {
             return {
                 counter : 0,
+                images: [
+                    '/images/2/Image_1.jpg'
+                ]
             }
         },
         computed:{

@@ -20,8 +20,7 @@
                 <div class="title m-t-mb ">
                     Laravel_
                 </div>
-                <div id='app'>
-                                       
+                <div id='app'>             
                     <example-component></example-component>
                 </div>
             </div>

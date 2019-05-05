@@ -24,6 +24,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('image-carousel', require('./components/ImageCarousel.vue').default);
 Vue.component('carousel-control', require('./components/CarouselControl.vue').default);
 Vue.component('modal-window', require('./components/ModalWindow.vue').default);
+Vue.component('header', require('./components/Header.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
