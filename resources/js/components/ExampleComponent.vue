@@ -1,9 +1,10 @@
 <template>
     <div>
-        <header
-            
+        <header-image
+            :image-url = "images[0]"
         >
-        </header>
+        </header-image>
+        
         <div class="container" style="background-color: lightgrey;">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -26,10 +27,11 @@
 
 <script>
 import CarouselControl from './CarouselControl.vue'
+import HeaderImage from './HeaderImage.vue'
 
     export default {
         components:{
-
+            HeaderImage
         },
         data () {
             return {
