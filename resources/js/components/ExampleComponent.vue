@@ -1,7 +1,8 @@
 <template>
     <div>
         <header-image
-            :image-url = "images[0]"
+            :image-url = "images[1]"
+            @remove-appointment="event => $emit('remove-appointment', event)"
         >
         </header-image>
         
@@ -10,7 +11,8 @@
                 <div class="col-md-8">
                 
                     <button 
-                        @click="openModal">Применить</button>  
+                        @click="openModal">Применить
+                    </button>  
                     
                     <modal-window
                         ref='imagemodal'
@@ -37,7 +39,10 @@ import HeaderImage from './HeaderImage.vue'
             return {
                 counter : 0,
                 images: [
-                    '/images/2/Image_1.jpg'
+                    '/images/2/Image_1.jpg',
+                    '/images/2/Image_2.jpg',
+                    '/images/2/Image_3.jpg',
+                    '/images/2/Image_4.jpg'
                 ]
             }
         },

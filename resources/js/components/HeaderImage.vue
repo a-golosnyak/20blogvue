@@ -5,7 +5,10 @@
             :style="headerImageStyle"
             @click="$emit('header-clicked')"
             >
-            <button class="view-photos">View Photos</button>
+            <button 
+                class="view-photos"
+                @click="openModal()"
+            >View Photos</button>
         </div>
     </div>
 </template>
@@ -19,7 +22,12 @@
                 };
             }
         },
-        props: [ 'image-url' ]
+        props: [ 'image-url' ],
+        methods:{
+            openModal(){
+                this.$emit('open-modal', appointment)
+            }
+        }
     }
 </script>
 

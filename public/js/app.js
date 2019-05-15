@@ -1826,6 +1826,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1835,7 +1837,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       counter: 0,
-      images: ['/images/2/Image_1.jpg']
+      images: ['/images/2/Image_1.jpg', '/images/2/Image_2.jpg', '/images/2/Image_3.jpg', '/images/2/Image_4.jpg']
     };
   },
   computed: {},
@@ -1869,6 +1871,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     headerImageStyle: function headerImageStyle() {
@@ -1877,7 +1882,12 @@ __webpack_require__.r(__webpack_exports__);
       };
     }
   },
-  props: ['image-url']
+  props: ['image-url'],
+  methods: {
+    openModal: function openModal() {
+      this.$emit('open-modal', appointment);
+    }
+  }
 });
 
 /***/ }),
@@ -37898,7 +37908,14 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("header-image", { attrs: { "image-url": _vm.images[0] } }),
+      _c("header-image", {
+        attrs: { "image-url": _vm.images[1] },
+        on: {
+          "remove-appointment": function(event) {
+            return _vm.$emit("remove-appointment", event)
+          }
+        }
+      }),
       _vm._v(" "),
       _c(
         "div",
@@ -37913,7 +37930,7 @@ var render = function() {
               { staticClass: "col-md-8" },
               [
                 _c("button", { on: { click: _vm.openModal } }, [
-                  _vm._v("Применить")
+                  _vm._v("Применить\n                ")
                 ]),
                 _vm._v(" "),
                 _c(
@@ -37968,7 +37985,20 @@ var render = function() {
           }
         }
       },
-      [_c("button", { staticClass: "view-photos" }, [_vm._v("View Photos")])]
+      [
+        _c(
+          "button",
+          {
+            staticClass: "view-photos",
+            on: {
+              click: function($event) {
+                return _vm.openModal()
+              }
+            }
+          },
+          [_vm._v("View Photos")]
+        )
+      ]
     )
   ])
 }
