@@ -1885,7 +1885,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['image-url'],
   methods: {
     openModal: function openModal() {
-      this.$emit('open-modal', appointment);
+      this.$emit('open-modal');
     }
   }
 });
@@ -37911,8 +37911,8 @@ var render = function() {
       _c("header-image", {
         attrs: { "image-url": _vm.images[1] },
         on: {
-          "remove-appointment": function(event) {
-            return _vm.$emit("remove-appointment", event)
+          "open-modal": function(event) {
+            return _vm.openModal()
           }
         }
       }),

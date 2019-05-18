@@ -2,7 +2,7 @@
     <div>
         <header-image
             :image-url = "images[1]"
-            @remove-appointment="event => $emit('remove-appointment', event)"
+            @open-modal="event => openModal()"
         >
         </header-image>
         

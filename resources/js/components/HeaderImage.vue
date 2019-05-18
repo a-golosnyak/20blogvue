@@ -25,7 +25,7 @@
         props: [ 'image-url' ],
         methods:{
             openModal(){
-                this.$emit('open-modal', appointment)
+                this.$emit('open-modal')
             }
         }
     }
