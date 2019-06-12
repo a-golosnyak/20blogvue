@@ -1,6 +1,6 @@
 <template>
     <div
-        id="modal" 
+        id="modal"
         :class="{ show : modalOpen }"
         >
         <button @click="modalOpen=false" class="modal-close">&times;</button>

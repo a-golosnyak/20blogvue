@@ -18,8 +18,7 @@
                         ref='imagemodal'
                     >
                         <image-carousel></image-carousel>
-                    </modal-window>      
-                    
+                    </modal-window>
                 </div>
                 <h3>{{this.counter}}</h3>
             </div>       

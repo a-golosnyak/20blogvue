@@ -1,69 +1,45 @@
 <template>
-    <div class="header">
-        <div
-            class="header-img"
-            :style="headerImageStyle"
-            @click="$emit('header-clicked')"
-            >
-            <button 
-                class="view-photos"
-                @click="openModal()"
-            >View Photos</button>
-        </div>
+    <div>
+        <p :class="{ contracted: contracted }">
+            <slot></slot>
+        </p>
+        <button v-if="contracted" class="more" @click="contracted =false">
+            + More
+        </button>
     </div>
 </template>
 
 <script>
     export default {
-        computed: {
-            headerImageStyle() {
-                return {
-                    'background-image': `url(${this.imageUrl})`
-                };
-            }
-        },
-        props: [ 'image-url' ],
-        methods:{
-            openModal(){
-                this.$emit('open-modal')
+        data() {
+            return {
+                contracted: true
             }
         }
     }
 </script>
 
 <style>
-    .header {
-        height:320px;
+    p {
+        white-space:pre-wrap;
     }
-    
-    .header .header-img {
-        background-repeat:no-repeat;
-        -moz-background-size:cover;
-        -o-background-size:cover;
-        background-size:cover;
-        background-position:50% 50%;
-        background-color:#f5f5f5;
-        height:100%;
-        cursor:pointer;
-        position:relative;
+    .contracted {
+        height:250px;
+        overflow:hidden;
     }
-    
-    .header .header-img button {
-        font-size:14px;
-        padding:7px 18px;
-        color:#484848;
-        line-height:1.43;
-        background:#ffffff;
-        font-weight:bold;
-        border-radius:4px;
-        border:1px solid #c4c4c4;
+    .about button.more {
+        background:transparent;
+        border:0;
+        color:#008489;
+        padding:0;
+        font-size:17px;
+        font-weight: bold;
     }
-    
-    .header .header-img button.view-photos {
-        position:absolute;
-        bottom:20px;
-        left:20px;
+    .about button.more:hover,
+    .about button.more:focus,
+    .about button.more:active {
+        text-decoration:underline;
+        outline:none;
     }
-
 </style>
 
