@@ -21,6 +21,11 @@
                     </modal-window>
                 </div>
                 <h3>{{this.counter}}</h3>
+                <hr>
+                <div class="about">
+                    <h3>About this listing</h3>
+                    <expandable-text>aAaaaaaaaAa</expandable-text>
+                </div>
             </div>       
         </div>
     </div>
@@ -29,10 +34,12 @@
 <script>
 import CarouselControl from './CarouselControl.vue'
 import HeaderImage from './HeaderImage.vue'
+import ExpandableText from './ExpandableText'
 
     export default {
         components:{
-            HeaderImage
+            HeaderImage,
+            ExpandableText
         },
         data () {
             return {
