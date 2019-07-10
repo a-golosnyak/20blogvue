@@ -6,25 +6,13 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>VueBlog</title>
-
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{URL::asset('css/app.css')}}" rel="stylesheet">
-
     </head>
     <body>
-        <div class=" position-ref full-height">
-            <div class="content mt-5">
-                <div class="title m-t-mb ">
-                    Laravel_
-                </div>
-                <div id='app'>             
-                    <example-component></example-component>
-                </div>
-            </div>
-        </div>
+        <div id='app'></div>
         <script type="text/javascript" src="{{URL::asset('js/app.js')}}"></script>
     </body>
 </html>
