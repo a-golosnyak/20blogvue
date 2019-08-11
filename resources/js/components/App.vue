@@ -8,7 +8,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>s
         <router-view></router-view>
         <custom-footer></custom-footer>
     </div>

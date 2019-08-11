@@ -3774,7 +3774,7 @@ var render = function() {
     "div",
     [
       _vm._m(0),
-      _vm._v(" "),
+      _vm._v("s\n    "),
       _c("router-view"),
       _vm._v(" "),
       _c("custom-footer")
