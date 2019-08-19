@@ -1779,6 +1779,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1786,7 +1820,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      csrf_token: window.csrf_token
+      csrf_token: window.csrf_token,
+      posts: [{
+        art_id: 1,
+        title: 'asd',
+        intro: 'qwerty',
+        img: null
+      }]
     };
   },
   methods: {
@@ -3773,7 +3813,56 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._m(0),
+      _c("div", { staticClass: "main-field " }, [
+        _c("div", { staticClass: "container-fluid " }, [
+          _c("div", { staticClass: "container data-field" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-8 blog-main " }, [
+                _c(
+                  "div",
+                  { staticClass: "blog-post" },
+                  _vm._l(_vm.posts, function(post) {
+                    return _c("div", { staticClass: "container-fluid p-4" }, [
+                      _c(
+                        "a",
+                        { staticClass: "none-decored", attrs: { href: "" } },
+                        [
+                          _c("h2", { staticClass: "blog-post-title" }, [
+                            _vm._v(_vm._s(post.title))
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm._m(0, true),
+                      _vm._v(" "),
+                      _c("div", { staticStyle: { display: "none" } }, [
+                        _vm._v(_vm._s(post.art_id))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(post.intro))]),
+                      _vm._v(" "),
+                      _vm._m(1, true),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _vm._m(2, true),
+                      _vm._v(" "),
+                      _c("br", { staticStyle: { clear: "both" } }),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("br")
+                    ])
+                  }),
+                  0
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
       _vm._v("s\n    "),
       _c("router-view"),
       _vm._v(" "),
@@ -3787,14 +3876,44 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "main-field " }, [
-      _c("div", { staticClass: "container-fluid " }, [
-        _c("div", { staticClass: "container data-field" }, [
-          _c("div", { staticClass: "row" }, [
-            _vm._v("\n                    @yield('content')\n                ")
-          ])
+    return _c("p", { staticClass: "blog-post-meta" }, [
+      _vm._v("Time автор Author"),
+      _c("a", { staticClass: "none-decored", attrs: { href: "#" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("img", { staticClass: "post-preview-img" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "post-footer" }, [
+      _c("a", { staticClass: "float-left", attrs: { href: "/" } }, [
+        _c("button", { staticClass: "comment-btn" }, [
+          _vm._v("Читать далее...")
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "float-left", attrs: { href: "/delete/" } }, [
+        _c("button", { staticClass: "comment-btn" }, [_vm._v("Изменить")])
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "float-left", attrs: { href: "/delpost/" } }, [
+        _c("button", { staticClass: "comment-btn" }, [_vm._v("Удалить")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "cursor-pointer none-decored float-right mr-2",
+          attrs: { href: "/#commentAnchor" }
+        },
+        [_c("div", { staticClass: "comments-link" }, [_vm._v("Комментарии")])]
+      )
     ])
   }
 ]
