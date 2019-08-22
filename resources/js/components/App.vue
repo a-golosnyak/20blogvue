@@ -49,6 +49,7 @@
 </template>
 <script>
     import CustomFooter from './CustomFooter.vue';
+    import axios from 'axios';
 
     export default {
         components: {
@@ -64,6 +65,14 @@
                     img: null,
                 },]
             }
+        },
+        created() {
+            console.log("Here");
+          axios
+            .get('api/posts')
+            .then(({data})=>{
+                this.posts = data;
+            })
         },
         methods: {
             logout() {

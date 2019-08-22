@@ -1764,6 +1764,8 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CustomFooter_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CustomFooter.vue */ "./resources/js/components/CustomFooter.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -1814,6 +1816,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     CustomFooter: _CustomFooter_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -1828,6 +1831,15 @@ __webpack_require__.r(__webpack_exports__);
         img: null
       }]
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    console.log("Here");
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('api/posts').then(function (_ref) {
+      var data = _ref.data;
+      _this.posts = data;
+    });
   },
   methods: {
     logout: function logout() {
