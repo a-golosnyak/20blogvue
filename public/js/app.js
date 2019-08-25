@@ -1847,8 +1847,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
-    logoUrl: function logoUrl() {
-      return "".concat(window.cdn_url || '', "images/logo.png");
+    logoUrl: function logoUrl() {//   return `${window.cdn_url || ''}images/logo.png`;
     }
   }
 });
@@ -1914,8 +1913,7 @@ __webpack_require__.r(__webpack_exports__);
     containerClass: function containerClass() {
       return "".concat(this.$route.name, "-container");
     },
-    logoUrl: function logoUrl() {
-      return "".concat(window.cdn_url || '', "images/logo_grey.png");
+    logoUrl: function logoUrl() {//                return `${window.cdn_url || ''}images/logo_grey.png`;
     }
   }
 });

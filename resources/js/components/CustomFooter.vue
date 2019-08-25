@@ -16,7 +16,7 @@
                 return `${this.$route.name}-container`;
             },
             logoUrl() {
-                return `${window.cdn_url || ''}images/logo_grey.png`;
+//                return `${window.cdn_url || ''}images/logo_grey.png`;
             }
         },
     }

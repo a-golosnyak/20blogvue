@@ -81,7 +81,7 @@
         },
         computed: {
             logoUrl() {
-                return `${window.cdn_url || ''}images/logo.png`;
+             //   return `${window.cdn_url || ''}images/logo.png`;
             }
         }
     }
