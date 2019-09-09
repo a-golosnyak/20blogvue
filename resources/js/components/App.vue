@@ -1,5 +1,8 @@
 <template>
     <div>
+        <Header>
+
+        </Header>
         <div class='main-field '>
             <div class='container-fluid ' >
                 <div class='container data-field'>
@@ -44,16 +47,15 @@
             </div>
         </div>s
         <router-view></router-view>
-        <custom-footer></custom-footer>
     </div>
 </template>
 <script>
-    import CustomFooter from './CustomFooter.vue';
+    import Header from './Header.vue';
     import axios from 'axios';
 
     export default {
         components: {
-            CustomFooter
+            Header
         },
         data() {
             return {
