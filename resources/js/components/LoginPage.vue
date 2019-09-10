@@ -1,21 +1,20 @@
 <template>
-    <div id="login" class="login-container">
-        <form role="form" method="POST" action="/login">
+    <div id="login" class="login-container rpw">
+        <form role="form" method="POST" action="/login" class="">
             <input type="hidden" name="_token" :value="csrf_token">
             <div class="form-control">
-                <input id="email" type="email" name="email"
-                       placeholder="Email Address" required autofocus>
+                <input id="email" type="email" name="email" placeholder="Email Address" required autofocus>
             </div>
             <div class="form-control">
-                <input id="password" type="password" name="password"
-                       placeholder="Password" required>
+                <input id="password" type="password" name="password" placeholder="Password" required>
             </div>
-            <div class="form-control">
+            <div class="form-control pt-4">
                 <button type="submit">Log in</button>
             </div>
         </form>
     </div>
 </template>
+
 <script>
     export default {
         data() {
@@ -25,6 +24,7 @@
         }
     }
 </script>
+
 <style>
     #login form {
         padding-top: 40px;
@@ -37,7 +37,7 @@
     }
 
     #login .form-control {
-        margin-bottom: 1em;
+        margin-bottom: 3em;
     }
 
     #login input[type=email],
@@ -45,6 +45,8 @@
     #login button,
     #login label {
         width: 100%;
+        margin-left: auto;
+        margin-right: auto;
         font-size: 19px !important;
         line-height: 24px;
         color: #484848;
@@ -56,17 +58,23 @@
         background-color: transparent;
         padding: 11px;
         border: 1px solid #dbdbdb;
-        border-radius: 2px;
+        border-radius: 5px;
         box-sizing:border-box
     }
 
     #login button {
-        background-color: #4fc08d;
+        background-color: #888;
         color: #ffffff;
         cursor: pointer;
         border: #4fc08d;
-        border-radius: 4px;
         padding-top: 12px;
         padding-bottom: 12px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .form-control{
+        border: none;
+        width: 60%;
     }
 </style>

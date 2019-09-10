@@ -18,4 +18,16 @@ class PostController extends Controller
     {
         return Post::all();
     }
+
+    /**
+     * @param $id
+     * @return Post
+     */
+    public function show($id)
+    {
+//        return $post;
+
+        $post = Post::where('id', $id)->get();
+        return $post;
+    }
 }
