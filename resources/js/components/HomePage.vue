@@ -10,30 +10,28 @@
                         <h2 class='blog-post-title'>{{ post.title }}</h2>
                     </router-link>
 
-                    <p class='blog-post-meta' v-if="post.user">{{ post.created_at}} автор {{  post.user.name}}<a class='none-decored' href='#'></a>
+                    <p class='blog-post-meta' v-if="post.user">{{ post.created_at}} author {{  post.user.name}}<a class='none-decored' href='#'></a>
                     </p>
                     <br>
                     <div class='post-footer'>
-                        <a href="/" class="float-left mr-2"><button class="comment-btn">Читать далее...</button></a>
+                        <router-link :to="`/post/${post.id}`">
+                            <button class="comment-btn">More...</button>
+                        </router-link>
 
-                        <a href="/delete/" class="float-left mr-2"><button class="comment-btn">Изменить</button></a>
-                        <a href="/delpost/" class="float-left mr-2"><button class="comment-btn">Удалить</button></a>
+                        <!--a href="/delete/" class="float-left mr-2"><button class="">Edit</button></a>
+                        <a href="/delpost/" class="float-left mr-2"><button class="">Delete</button></a-->
 
-                        <a href='/#commentAnchor' class='cursor-pointer none-decored float-right mr-2'>
-                            <div class='comments-link'>Комментарии</div>
-                        </a>
+                        <!--a href='/#commentAnchor' class='cursor-pointer none-decored float-right mr-2'>
+                            <div class=''>Comments</div>
+                        </a-->
                     </div>
-                    <br style='clear: both;'>
                     <hr>
-                    <br>
-                    <br>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import { groupByCountry } from '../helpers';
 import axios from 'axios';
 
 export default {
@@ -48,6 +46,12 @@ export default {
             .get('api/posts')
             .then(({data})=>{
                 this.posts = data;
+            })
+            .catch(({response}) => {
+                this.$toast.error({
+                    title: 'Error!',
+                    message: 'Unable to load posts',
+                })
             })
     },
     computed: {
@@ -67,7 +71,6 @@ export default {
     .blog-post-title {
         margin-bottom: .25rem;
         color: #505050;
-        /*  font-size: 1.5rem;  */
     }
 
     .blog-post-meta {

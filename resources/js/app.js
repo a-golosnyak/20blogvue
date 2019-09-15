@@ -7,11 +7,14 @@
 
 //require('./bootstrap');
 
-window.Vue = require('vue');
-
 import App from './components/App.vue';
 import router from './router.js';
+import Toast from 'cxlt-vue2-toastr'
+import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
 
+window.Vue = require('vue');
+
+Vue.use(Toast, { position: 'bottom right', showDuration: 3000 })
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

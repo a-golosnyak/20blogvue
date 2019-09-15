@@ -8,7 +8,7 @@
                     <h2 class='blog-post-title'>{{ post.title }}</h2>
 
                     <h6 class='blog-post-meta'>
-                        {{ post.created_at }} автор {{ post.user.name }}
+                        {{ post.created_at }} auhor {{ post.user.name }}
                         <a class='none-decored' href='#'></a>
                     </h6>
 
@@ -16,10 +16,19 @@
 
                     <hr>
 
-                    <router-link :to="`/post/${post.id}/edit`">
-                        <button class="comment-btn float-right ml-2">Изменить</button>
-                    </router-link>
-                    <button class="comment-btn float-right">Удалить</button>
+                    <!--router-link :to="`/post/${post.id}/edit`">
+                        <button class="comment-btn float-right ml-2">Edit</button>
+                    </router-link-->
+
+                    <button
+                        class="comment-btn float-right ml-2"
+                        @click="Edit"
+                    >Edit
+                    </button>
+                    <button
+                        class="comment-btn float-right"
+                        @click="Delete"
+                    >Delete</button>
                     <br>
                     <br>
 
@@ -45,19 +54,48 @@
             },
         },
         created() {
-            console.log("Here post show.");
             axios
                 .get(`/api/post/${this.id}`)
                 .then(({data})=>{
-                    console.log(data[0]);
-                    this.post = data[0];
+                    this.post = data;
+                })
+                .catch(({response}) => {
+                    this.$toast.error({
+                        title: 'Error!',
+                        message: 'Unable to load post',
+                    })
                 })
         },
         computed: {
 
         },
         methods: {
+            Edit(){
+                this.$router.push({ name: 'post.edit', params: {
+                    title:  this.post.title,
+                    body:   this.post.body
+                }})
+            },
+            Delete(){
+                console.log("Delete method. " + this.post.title);
+                axios
+                    .delete(`/api/post/${this.id}`)
+                    .then(({data})=>{
+                        console.log('Post Deleted.')
+                        this.$router.go(-1);
+                    })
+                    .catch(({response}) => {
+                        if ((response.status = 422)) {
+                            this.errors = response.data;
+                            console.log(this.errors);
 
+                            this.$toast.error({
+                                title: 'Error!',
+                                message: this.errors.message,
+                            })
+                        }
+                    })
+            }
         }
     }
 </script>

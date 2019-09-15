@@ -1,14 +1,11 @@
 import Vue from 'vue';
-import axios from 'axios';
 
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 import HomePage from './components/HomePage.vue';
 import PostIndex from './components/PostIndex.vue';
-
 import PostCreateUpdate from './components/PostCreateUpdate.vue';
-// import SavedPage from './components/SavedPage.vue';
 import LoginPage from './components/LoginPage.vue';
 
 let router = new VueRouter({
@@ -20,14 +17,9 @@ let router = new VueRouter({
         name: 'home'
     },
     {
-        path: '/post',
-        component: HomePage,
-        name: 'home'
-    },
-    {
-        path: '/post/:id',
-        component: PostIndex,
-        name: 'post.show',
+        path: '/post/create',
+        component: PostCreateUpdate,
+        name: 'post.create',
         props: true,
     },
     {
@@ -36,13 +28,12 @@ let router = new VueRouter({
         name: 'post.edit',
         props: true,
     },
-
-      /*
     {
-        path: '/saved',
-        component: SavedPage,
-        name: 'saved' },
-        */
+        path: '/post/:id',
+        component: PostIndex,
+        name: 'post.show',
+        props: true,
+    },
     {
         path: '/login',
         component: LoginPage,

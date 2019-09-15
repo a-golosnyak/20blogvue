@@ -1,29 +1,25 @@
 <template>
     <div class="">
-        <div class="navigation navbar navbar-expand-md">
+        <div class="navigation navbar navbar-expand-sm p-0">
             <div class="container ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+
                     <ul class="navbar-nav">
                         <li class="nav-item  ">
                             <a class="nav-link" href="/">
                                 <router-link :to='`/`'>
-                                    <a class="nav-link" href="">Главная</a>
+                                    <a class="nav-link font-weight-bold" href="">Home</a>
                                 </router-link>
                             </a>
                         </li>
 
                         <li class="nav-item  ">
                             <a class="nav-link" href="/">
-                                <router-link :to='`/`'>
+                                <router-link :to='`/post/create`'>
                                     <a class="nav-link font-weight-bold" href="">Create Post</a>
                                 </router-link>
                             </a>
                         </li>
                     </ul>
-                </div>
                 <router-link :to="`/login`">
                     <a class="nav-link font-weight-bold" href="/login">Login</a>
                 </router-link>
@@ -38,7 +34,6 @@
 </script>
 
 <style>
-
     .navigation {
         background: linear-gradient(
             rgba(150, 150, 150, 0.7),
@@ -59,6 +54,8 @@
     .navbar-toggler-icon {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/1500/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
     }
-
+    a {
+        color: #555;
+    }
 </style>
 

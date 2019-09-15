@@ -1,9 +1,10 @@
 <template>
     <div class="blog-header">
         <div class="container">
-            <h3 class="blog-title">
-                <a class='none-decored' href="/">The Blog</a></h3>
-            <p class="lead blog-description">Блог для людей, интерисующихся электроникой.</p>
+            <h2 class="blog-title">
+                <a class='none-decored' href="/">The Blog</a>
+            </h2>
+            <!--p class="lead blog-description">Блог для людей, интерисующихся электроникой.</p-->
         </div>
     </div>
 </template>
@@ -25,7 +26,7 @@
 
     .blog-title {
         margin-bottom: 0;
-        font-size: 2rem;
+        font-size: 3rem;
         font-weight: normal;
         color: #404040;
     }

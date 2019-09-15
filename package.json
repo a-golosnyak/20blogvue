@@ -25,5 +25,8 @@
         "vue": "^2.5.17",
         "vue-router": "^3.0.7",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "cxlt-vue2-toastr": "^1.1.0"
     }
 }
