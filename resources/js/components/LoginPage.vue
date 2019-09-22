@@ -1,7 +1,7 @@
 <template>
-    <div id="login" class="login-container rpw">
+    <div id="login" class="login-container ">
         <form role="form" method="POST" action="/login" class="">
-            <input type="hidden" name="_token" :value="csrf_token">
+            <input type="hidden" name="_token" :value="csrf_token" >
             <div class="form-control">
                 <input id="email" type="email" name="email" placeholder="Email Address" required autofocus>
             </div>
@@ -19,10 +19,18 @@
     export default {
         data() {
             return {
+                csrf_token: 'null',
 //                csrf_token: window.csrf_token
-
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+//              csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
+        },
+        beforeCreate(){
+            this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+        },
+        created() {
+          this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+
+          console.log(this.csrf_token);
         }
     }
 </script>

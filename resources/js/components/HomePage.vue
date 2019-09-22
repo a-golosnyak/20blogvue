@@ -42,6 +42,8 @@ export default {
     },
     created() {
         console.log("Here Home.");
+        console.log(window);
+
         axios
             .get('api/posts')
             .then(({data})=>{

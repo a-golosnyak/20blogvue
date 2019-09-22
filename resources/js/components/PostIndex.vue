@@ -31,7 +31,6 @@
                     >Delete</button>
                     <br>
                     <br>
-
                 </div>
             </div>
         </div>
