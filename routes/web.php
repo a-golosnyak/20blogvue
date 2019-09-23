@@ -20,9 +20,12 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('logi', 'Auth\LoginController@showLoginForm')->name('login');
 

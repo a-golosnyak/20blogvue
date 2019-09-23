@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class LocalUserSeeder extends Seeder
@@ -17,6 +17,11 @@ class LocalUserSeeder extends Seeder
                 'email'   => 'andreygoldpua@gmail.com',
                 'password'=> 'password',
                 'name'    => 'and'
+            ]);
+            User::create([
+                'email'   => 'adm@mail.com',
+                'password'=> '111111',
+                'name'    => 'adm'
             ]);
         } catch (Throwable $e) {
             $this->command->info('Local user exists');

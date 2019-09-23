@@ -20,6 +20,8 @@
                     </li>
                 </ul>
                 <div>
+
+                    <!--a class="nav-link font-weight-bold" href="/login">Login</a-->
                     <router-link :to="`/login`">
                         <a class="nav-link font-weight-bold" href="/login">Login</a>
                     </router-link>

@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -37,6 +39,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Automatically hash user password.
+     *
+     * @param string $password
+     */
+    public function setPasswordAttribute(string $password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
 
     public function post()
     {

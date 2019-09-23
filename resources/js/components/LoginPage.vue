@@ -8,6 +8,10 @@
             <div class="form-control">
                 <input id="password" type="password" name="password" placeholder="Password" required>
             </div>
+
+            <div class="form-control">
+                <input type='checkbox' name='remember'> Запомнить меня
+            </div>
             <div class="form-control pt-4">
                 <button type="submit">Log in</button>
             </div>
@@ -20,17 +24,22 @@
         data() {
             return {
                 csrf_token: 'null',
+                isLoggedIn: null,
 //                csrf_token: window.csrf_token
 //              csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         },
         beforeCreate(){
             this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+            console.log(this.csrf_token);
         },
         created() {
           this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
 
-          console.log(this.csrf_token);
+
+
+          this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
+          console.log('Logged in: ' + this.isLoggedIn );
         }
     }
 </script>

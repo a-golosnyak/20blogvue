@@ -1923,20 +1923,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      csrf_token: 'null' //                csrf_token: window.csrf_token
+      csrf_token: 'null',
+      isLoggedIn: null //                csrf_token: window.csrf_token
       //              csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
     };
   },
   beforeCreate: function beforeCreate() {
     this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
+    console.log(this.csrf_token);
   },
   created: function created() {
     this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
-    console.log(this.csrf_token);
+    this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
+    console.log('Logged in: ' + this.isLoggedIn);
   }
 });
 
@@ -1951,6 +1958,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -3922,7 +3931,9 @@ var render = function() {
           _vm._v(" "),
           _vm._m(1),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._m(3)
         ]
       )
     ]
@@ -3960,6 +3971,15 @@ var staticRenderFns = [
           required: ""
         }
       })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-control" }, [
+      _c("input", { attrs: { type: "checkbox", name: "remember" } }),
+      _vm._v(" Запомнить меня\n        ")
     ])
   },
   function() {
