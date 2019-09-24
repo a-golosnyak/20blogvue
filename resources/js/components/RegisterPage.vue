@@ -1,20 +1,22 @@
 <template>
-    <div id="login" class="login-container ">
-        <h3 class="mt-5 ml-3">Login</h3>
-        <form role="" method="POST" action="/login" class="pt-0 mt-5">
+    <div class="login-container ">
+        <h3 class="mt-5 ml-3">Register</h3>
+        <form role="" method="POST" action="/register" class="pt-0 mt-5">
             <input type="hidden" name="_token" :value="csrf_token" >
             <div class="form-control">
-                <input id="email" type="email" name="email" placeholder="Email Address" required autofocus>
+            <input id="email" type="email" name="email" placeholder="Email Address" required autofocus>
             </div>
-            <div class="form-control">
+            <div class="form-control mb-3">
                 <input id="password" type="password" name="password" placeholder="Password" required>
             </div>
-
             <div class="form-control">
-                <input type='checkbox' name='remember'> Запомнить меня
+                <input id="password_confirm" type="password" name="password_confirmation" placeholder="Password Confirm" required>
+            </div>
+            <div class="form-control">
+                <input id="name" type="name" name="name" placeholder="Name" required>
             </div>
             <div class="form-control pt-4">
-                <button type="submit">Log in</button>
+                <button type="submit" @click="handleSubmit">Register</button>
             </div>
         </form>
     </div>
@@ -26,8 +28,11 @@
             return {
                 csrf_token: 'null',
                 isLoggedIn: null,
-//                csrf_token: window.csrf_token
-//              csrf_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+                name : "",
+                email : "",
+                password : "",
+                password_confirmation : ""
             }
         },
         beforeCreate(){
@@ -41,12 +46,17 @@
 
           this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
           console.log('Logged in: ' + this.isLoggedIn );
+        },
+        methods:{
+          handleSubmit(){
+//            alert('Here');
+          }
         }
     }
 </script>
 
 <style>
-    #login form {
+    form {
         padding-top: 40px;
     }
 
@@ -56,14 +66,15 @@
         }
     }
 
-    #login .form-control {
+    .form-control {
         margin-bottom: 3em;
     }
 
-    #login input[type=email],
-    #login input[type=password],
-    #login button,
-    #login label {
+    input[type=email],
+    input[type=password],
+    input[type=name],
+    button,
+    label {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -74,7 +85,7 @@
         -webkit-appearance: none;
     }
 
-    #login input {
+    input {
         background-color: transparent;
         padding: 11px;
         border: 1px solid #dbdbdb;
@@ -82,7 +93,7 @@
         box-sizing:border-box
     }
 
-    #login button {
+    button {
         background-color: #888;
         color: #ffffff;
         cursor: pointer;

@@ -7,6 +7,7 @@ import HomePage from './components/HomePage.vue';
 import PostIndex from './components/PostIndex.vue';
 import PostCreateUpdate from './components/PostCreateUpdate.vue';
 import LoginPage from './components/LoginPage.vue';
+import RegisterPage from './components/RegisterPage.vue';
 
 let router = new VueRouter({
   mode: 'history',
@@ -34,12 +35,16 @@ let router = new VueRouter({
         name: 'post.show',
         props: true,
     },
-    {
+/*    {
         path: '/login',
         component: LoginPage,
         name: 'login'
+    },*/
+    {
+        path: '/register',
+        component: RegisterPage,
+        name: 'register'
     }
-
   ],
 });
 

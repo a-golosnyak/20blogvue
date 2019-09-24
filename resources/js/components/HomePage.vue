@@ -79,4 +79,9 @@ export default {
         margin-bottom: 1.25rem;
         color: #999;
     }
+
+    .comment-btn {
+        width: 6rem;
+    }
+
 </style>

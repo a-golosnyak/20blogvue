@@ -19,16 +19,20 @@
                         </a>
                     </li>
                 </ul>
-                <div>
-
-                    <!--a class="nav-link font-weight-bold" href="/login">Login</a-->
-                    <router-link :to="`/login`">
+                <div class="form-inline pull-right" >
+                    <a class="nav-link font-weight-bold" href="/login">Login</a>
+                    <!--router-link :to="`/login`">
                         <a class="nav-link font-weight-bold" href="/login">Login</a>
-                    </router-link>
+                    </router-link-->
                     <a
                         href="/logout"
                         class="nav-link font-weight-bold"
-                    >Выйти</a>
+                    >Выйти
+                    </a>
+
+                    <router-link :to="`/register`">
+                        <a class="nav-link font-weight-bold" href="/login">Register</a>
+                    </router-link>
                 </div>
             </div>
         </div>
