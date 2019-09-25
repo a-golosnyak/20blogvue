@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class LocalUserSeeder extends Seeder
@@ -19,7 +19,7 @@ class LocalUserSeeder extends Seeder
                 'name'    => 'and'
             ]);
             User::create([
-                'email'   => 'adm@mail.com',
+                'email'   => 'adm@mail.ru',
                 'password'=> '111111',
                 'name'    => 'adm'
             ]);

@@ -37,12 +37,15 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            posts: []
+            posts: [],
+            isLoggedIn: null,
         }
     },
     created() {
         console.log("Here Home.");
-        console.log(window);
+
+      this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
+      console.log('Logged in: ' + this.isLoggedIn );
 
         axios
             .get('api/posts')

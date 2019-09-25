@@ -32,19 +32,12 @@
         <div class="navigation navbar navbar-expand-sm p-0">
             <div class="container ">
                 <ul class="navbar-nav">
-                    <li class="form-inline nav-item my-2 ">
+                    <li class="nav-item mb-3 ">
                         <a class="nav-link" href="/">
-                            <router-link :to='`/`'>
+                            <!--router-link :to='`/`'>
                                 <a class="nav-link font-weight-bold" href="">Home</a>
-                            </router-link>
-                        </a>
-                    </li>
-
-                    <li class="form-inline nav-item">
-                        <a class="nav-link" href="/">
-                            <router-link :to='`/post/create`'>
-                                <a class="nav-link font-weight-bold" href="">Create Post</a>
-                            </router-link>
+                            </router-link-->
+                            <a class="nav-link font-weight-bold" href="/">Home</a>
                         </a>
                     </li>
                 </ul>
@@ -58,10 +51,10 @@
                         class="nav-link font-weight-bold"
                     >Выйти
                     </a>
-
-                    <router-link :to="`/register`">
+                    <a class="nav-link font-weight-bold" href="/register">Register</a>
+                    <!--router-link :to="`/register`">
                         <a class="nav-link font-weight-bold" href="/login">Register</a>
-                    </router-link>
+                    </router-link-->
                 </div>
             </div>
         </div>

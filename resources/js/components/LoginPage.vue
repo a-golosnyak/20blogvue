@@ -9,7 +9,6 @@
             <div class="form-control">
                 <input id="password" type="password" name="password" placeholder="Password" required>
             </div>
-
             <div class="form-control">
                 <input type='checkbox' name='remember'> Запомнить меня
             </div>

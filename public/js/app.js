@@ -1871,14 +1871,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      isLoggedIn: null
     };
   },
   created: function created() {
     var _this = this;
 
     console.log("Here Home.");
-    console.log(window);
+    this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
+    console.log('Logged in: ' + this.isLoggedIn);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/posts').then(function (_ref) {
       var data = _ref.data;
       _this.posts = data;
@@ -1906,7 +1908,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2000,7 +2001,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isLoggedIn: null
+    };
+  },
+  created: function created() {
+    this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
+  }
+});
 
 /***/ }),
 
@@ -3922,11 +3936,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "blog-header" }, [
       _c("div", { staticClass: "container" }, [
-        _c("h2", { staticClass: "blog-title" }, [
-          _c("a", { staticClass: "none-decored", attrs: { href: "/" } }, [
-            _vm._v("The Blog")
-          ])
-        ])
+        _c("h2", { staticClass: "blog-title" })
       ])
     ])
   }
@@ -4136,25 +4146,7 @@ var render = function() {
     _c("div", { staticClass: "navigation navbar navbar-expand-sm p-0" }, [
       _c("div", { staticClass: "container " }, [
         _c("ul", { staticClass: "navbar-nav" }, [
-          _c("li", { staticClass: "nav-item  " }, [
-            _c(
-              "a",
-              { staticClass: "nav-link", attrs: { href: "/" } },
-              [
-                _c("router-link", { attrs: { to: "/" } }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link font-weight-bold",
-                      attrs: { href: "" }
-                    },
-                    [_vm._v("Home")]
-                  )
-                ])
-              ],
-              1
-            )
-          ]),
+          _vm._m(0),
           _vm._v(" "),
           _c("li", { staticClass: "nav-item  " }, [
             _c(
@@ -4177,46 +4169,69 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-inline pull-right" },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "nav-link font-weight-bold",
-                attrs: { href: "/login" }
-              },
-              [_vm._v("Login")]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "nav-link font-weight-bold",
-                attrs: { href: "/logout" }
-              },
-              [_vm._v("Выйти\n                ")]
-            ),
-            _vm._v(" "),
-            _c("router-link", { attrs: { to: "/register" } }, [
+        _vm.isLoggedIn
+          ? _c("div", { staticClass: "form-inline pull-right" }, [
+              _c("span", { staticClass: "font-weight-bold" }, [
+                _vm._v("Logged in")
+              ]),
+              _vm._v(" "),
               _c(
                 "a",
                 {
                   staticClass: "nav-link font-weight-bold",
-                  attrs: { href: "/login" }
+                  attrs: { href: "/logout" }
                 },
-                [_vm._v("Register")]
+                [_vm._v("Log out")]
               )
             ])
-          ],
-          1
-        )
+          : _c(
+              "div",
+              { staticClass: "form-inline pull-right" },
+              [
+                _c("router-link", { attrs: { to: "/login" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link font-weight-bold",
+                      attrs: { href: "/login" }
+                    },
+                    [_vm._v("Login")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("router-link", { attrs: { to: "/register" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "nav-link font-weight-bold",
+                      attrs: { href: "/login" }
+                    },
+                    [_vm._v("Register")]
+                  )
+                ])
+              ],
+              1
+            )
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
+        _c(
+          "a",
+          { staticClass: "nav-link font-weight-bold", attrs: { href: "/" } },
+          [_vm._v("Home")]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -20317,13 +20332,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _components_PostIndex_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     name: 'post.show',
     props: true
-  },
-  /*    {
-          path: '/login',
-          component: LoginPage,
-          name: 'login'
-      },*/
-  {
+  }, {
+    path: '/login',
+    component: _components_LoginPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    name: 'login'
+  }, {
     path: '/register',
     component: _components_RegisterPage_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     name: 'register'

@@ -2,7 +2,7 @@
     <div class="blog-header">
         <div class="container">
             <h2 class="blog-title">
-                <a class='none-decored' href="/">The Blog</a>
+                <!--a class='none-decored' href="/">The Blog</a-->
             </h2>
             <!--p class="lead blog-description">Блог для людей, интерисующихся электроникой.</p-->
         </div>

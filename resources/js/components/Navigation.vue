@@ -3,14 +3,13 @@
         <div class="navigation navbar navbar-expand-sm p-0">
             <div class="container ">
                 <ul class="navbar-nav">
-                    <li class="nav-item  ">
+                    <li class="nav-item">
                         <a class="nav-link" href="/">
-                            <router-link :to='`/`'>
-                                <a class="nav-link font-weight-bold" href="">Home</a>
-                            </router-link>
+                            <!--router-link :to='`/`'-->
+                                <a class="nav-link font-weight-bold" href="/">Home</a>
+                            <!--/router-link-->
                         </a>
                     </li>
-
                     <li class="nav-item  ">
                         <a class="nav-link" href="/">
                             <router-link :to='`/post/create`'>
@@ -19,17 +18,23 @@
                         </a>
                     </li>
                 </ul>
-                <div class="form-inline pull-right" >
-                    <a class="nav-link font-weight-bold" href="/login">Login</a>
-                    <!--router-link :to="`/login`">
-                        <a class="nav-link font-weight-bold" href="/login">Login</a>
-                    </router-link-->
-                    <a
-                        href="/logout"
-                        class="nav-link font-weight-bold"
-                    >Выйти
-                    </a>
+                <div
+                    v-if="isLoggedIn"
+                    class="form-inline pull-right"
+                >
+                    <span class="font-weight-bold">Logged in</span>
+                    <a href="/logout" class="nav-link font-weight-bold">Log out</a>
+                </div>
 
+                <div
+                    v-else
+                    class="form-inline pull-right"
+                >
+                    <!--a class="nav-link font-weight-bold" href="/login">Login</a-->
+                    <router-link :to="`/login`">
+                        <a class="nav-link font-weight-bold" href="/login">Login</a>
+                    </router-link>
+                    <!--a class="nav-link font-weight-bold" href="/register">Register</a-->
                     <router-link :to="`/register`">
                         <a class="nav-link font-weight-bold" href="/login">Register</a>
                     </router-link>
@@ -38,10 +43,17 @@
         </div>
     </div>
 </template>
-
 <script>
-export default {
 
+export default {
+  data() {
+    return {
+      isLoggedIn: null,
+    }
+  },
+  created() {
+    this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
+  }
 }
 </script>
 

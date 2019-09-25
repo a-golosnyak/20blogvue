@@ -35,11 +35,11 @@ let router = new VueRouter({
         name: 'post.show',
         props: true,
     },
-/*    {
+    {
         path: '/login',
         component: LoginPage,
         name: 'login'
-    },*/
+    },
     {
         path: '/register',
         component: RegisterPage,

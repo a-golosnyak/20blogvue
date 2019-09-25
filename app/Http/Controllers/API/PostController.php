@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
  */
 class PostController extends Controller
 {
+    public function __construct()
+    {
+ //       $this->middleware('auth');
+    }
+
     /**
      * @return Post[]|\Illuminate\Database\Eloquent\Collection
      */
@@ -25,9 +30,11 @@ class PostController extends Controller
     /**
      * @param Post $post
      * @return Post
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Post $post)
     {
+//        $this->authorize('view', Post::class);
         return $post;
     }
 

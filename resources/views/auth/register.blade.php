@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app2.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -20,7 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app1">
+<div id="app2">
     <!--div class="blog-header">
         <div class="container">
             <h2 class="blog-title">
@@ -32,19 +32,12 @@
         <div class="navigation navbar navbar-expand-sm p-0">
             <div class="container ">
                 <ul class="navbar-nav">
-                    <li class="form-inline nav-item my-2 ">
+                    <li class="nav-item mb-3 ">
                         <a class="nav-link" href="/">
-                            <router-link :to='`/`'>
+                            <!--router-link :to='`/`'>
                                 <a class="nav-link font-weight-bold" href="">Home</a>
-                            </router-link>
-                        </a>
-                    </li>
-
-                    <li class="form-inline nav-item">
-                        <a class="nav-link" href="/">
-                            <router-link :to='`/post/create`'>
-                                <a class="nav-link font-weight-bold" href="">Create Post</a>
-                            </router-link>
+                            </router-link-->
+                            <a class="nav-link font-weight-bold" href="/">Home</a>
                         </a>
                     </li>
                 </ul>
@@ -54,14 +47,14 @@
                         <a class="nav-link font-weight-bold" href="/login">Login</a>
                     </router-link-->
                     <a
-                            href="/logout"
-                            class="nav-link font-weight-bold"
+                        href="/logout"
+                        class="nav-link font-weight-bold"
                     >Выйти
                     </a>
-
-                    <router-link :to="`/register`">
+                    <a class="nav-link font-weight-bold" href="/register">Register</a>
+                    <!--router-link :to="`/register`">
                         <a class="nav-link font-weight-bold" href="/login">Register</a>
-                    </router-link>
+                    </router-link-->
                 </div>
             </div>
         </div>
@@ -72,22 +65,23 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div id="login" class="login-container ">
-                        <h3 class="mt-5 ml-3">Login</h3>
-                        <form method="POST" action="{{ route('login') }}">
-                            <!--input type="hidden" name="_token" :value="csrf_token" -->
+                        <h3 class="mt-5 ml-3">Register</h3>
+                        <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-control">
                                 <input id="email" type="email" name="email" placeholder="Email Address" required autofocus>
                             </div>
-                            <div class="form-control">
+                            <div class="form-control mb-3">
                                 <input id="password" type="password" name="password" placeholder="Password" required>
                             </div>
-
                             <div class="form-control">
-                                <input type='checkbox' name='remember'> Запомнить меня
+                                <input id="password_confirm" type="password" name="password_confirm" placeholder="Password Confirm" required>
+                            </div>
+                            <div class="form-control">
+                                <input id="name" type="name" name="name" placeholder="Name" required>
                             </div>
                             <div class="form-control pt-4">
-                                <button type="submit">Log in</button>
+                                <button type="submit" @click="handleSubmit">Register</button>
                             </div>
                         </form>
                     </div>
@@ -109,8 +103,7 @@
 
 
 
-
-@section('content')
+{{--
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -183,5 +176,4 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+</div> --}}

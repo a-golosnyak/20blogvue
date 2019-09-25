@@ -11,26 +11,15 @@
 |
 */
 
-
-
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () { return view('home'); });
 
 Route::post('register', 'Auth\RegisterController@register');
+Route::post('login', 'Auth\LoginController@login')->name('login');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/', function () {
-    return view('home');
-});
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
-//Auth::routes();
+Route::get('register', function () { return view('home'); });        // when validation fails
+Route::get('login', function () { return view('home'); });           // when validation fails
 
-Route::get('logi', 'Auth\LoginController@showLoginForm')->name('login');
-
-Route::post('/login', 'Auth\LoginController@login')->name('login');
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
-
-//Route::get('/home', 'HomeController@index')->name('home');
