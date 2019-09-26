@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -86,9 +87,13 @@ class RegisterController extends Controller
             'password' => 'required',
             'password_confirmation' => 'required|same:password',
         ]);
+
+        event(new Registered($user = $this->create($request->all())));
+
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
         }
+
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
@@ -102,5 +107,6 @@ class RegisterController extends Controller
         $success['name'] =  $user->name;
         return response()->json(['success'=>$success], $this-> successStatus);
     }
-
+//_token=xQ5ZINTwPBnIVur5PuDZG2XrDZdwZbsDmQendlRG&email=adm%40mail.ru&password=111111
+//_token=xQ5ZINTwPBnIVur5PuDZG2XrDZdwZbsDmQendlRG&email=aaa%40mail.ru&password=111111
 }

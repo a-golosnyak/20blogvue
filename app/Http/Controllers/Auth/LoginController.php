@@ -45,15 +45,17 @@ class LoginController extends Controller
     {
         $this->validateLogin($request);
 
-        $retval = Auth::attempt([
+/*        $retval = Auth::attempt([
             'email' => request('email'),
             'password' => request('password')
         ]);
+*/
+//        return "New login method: " . $request;
 
 //        return "New login method: " . var_dump($retval);
 
-        if($retval){
-//        if ($this->attemptLogin($request)){
+//        if(true){
+        if ($this->attemptLogin($request)){
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')-> accessToken;
             return response()->json(['success' => $success], $this-> successStatus);

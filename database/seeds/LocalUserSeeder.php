@@ -15,7 +15,7 @@ class LocalUserSeeder extends Seeder
         try {
             User::create([
                 'email'   => 'andreygoldpua@gmail.com',
-                'password'=> 'password',
+                'password'=> '111111',
                 'name'    => 'and'
             ]);
             User::create([
@@ -23,6 +23,12 @@ class LocalUserSeeder extends Seeder
                 'password'=> '111111',
                 'name'    => 'adm'
             ]);
+            User::create([
+                'email'   => 'aaa@mail.ru',
+                'password'=> '111111',
+                'name'    => 'aaa'
+            ]);
+
         } catch (Throwable $e) {
             $this->command->info('Local user exists');
         }

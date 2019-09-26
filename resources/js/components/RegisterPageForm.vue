@@ -16,32 +16,14 @@
                 <input id="name" type="name" name="name" placeholder="Name" required>
             </div>
             <div class="form-control pt-4">
-                <button type="button" @click="handleRegister">Register</button>
+                <button type="submit" @click="handleSubmit">Register</button>
             </div>
         </form>
-
-        <div class="form-control pt-4">
-            <button type="button" @click="handleLogin">Login</button>
-        </div>
-
-<!--        clients></clients-->
-<!--        <authorized-clients></authorized-clients>-->
-<!--        <personal-access-tokens></personal-access-tokens>-->
     </div>
 </template>
 
 <script>
-
-    import Clients from './passport/Clients'
-    import AuthorizedClients from './passport/AuthorizedClients'
-    import PersonalAccessTokens from './passport/PersonalAccessTokens'
-
     export default {
-        components: {
-            Clients,
-            AuthorizedClients,
-            PersonalAccessTokens
-        },
         data() {
             return {
                 csrf_token: 'null',
@@ -66,63 +48,9 @@
           console.log('Logged in: ' + this.isLoggedIn );
         },
         methods:{
-            handleRegister(){
-                axios
-                .post('api/register', {
-                    'name': 'ccc',
-                    'email': 'ccc@mail.ru',
-                    'password': '111111',
-                    'password_confirmation': '111111',
-                })
-                .then(({data}) => {
-                    console.log(data.message.message);
-                    this.$toast.success({
-                        title: 'Success!',
-                        message: data.message,
-                    })
-                    //              this.$router.go(-1);
-                })
-                .catch(({response}) => {
-                    if ((response.status == 422)) {
-                        this.errors = response.data;
-                        console.log(this.errors);
-
-                        this.$toast.error({
-                        title: 'Error!',
-                        message: this.errors.message,
-                        })
-                    }
-                })
-                .finally(() => this.isLoading = false);
-            },
-
-            handleLogin(){
-                axios
-                .post('api/login', {
-                    'email': 'bbb@mail.ru',
-                    'password': '111111',
-                })
-                .then(({data}) => {
-                    console.log(data.message.message);
-                    this.$toast.success({
-                        title: 'Success!',
-                        message: data.message,
-                    })
-                    //              this.$router.go(-1);
-                })
-                .catch(({response}) => {
-                    if ((response.status == 422)) {
-                        this.errors = response.data;
-                        console.log(this.errors);
-
-                        this.$toast.error({
-                            title: 'Error!',
-                            message: this.errors.message,
-                        })
-                    }
-                })
-                .finally(() => this.isLoading = false);
-            },
+          handleSubmit(){
+//            alert('Here');
+          }
         }
     }
 </script>

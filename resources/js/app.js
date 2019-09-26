@@ -5,12 +5,13 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-//require('./bootstrap');
+require('./bootstrap');
 
 import App from './components/App.vue';
 import router from './router.js';
 import Toast from 'cxlt-vue2-toastr'
 import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
+//import store from './store';
 
 window.Vue = require('vue');
 
@@ -42,4 +43,5 @@ const app = new Vue({
     el: '#app',
     render: h => h(App),
     router,
+//    store,
 });
