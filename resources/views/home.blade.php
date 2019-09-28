@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="login-status" content="{{ Auth::check() }}">
+        <meta name="login-status" content="">
+        <meta name="login-token" content="">
 
         <title>VueBlog</title>
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>

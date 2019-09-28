@@ -3,21 +3,30 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * Class UserController
+ * @package App\Http\Controllers\API
+ */
 class UserController extends Controller
 {
+    /**
+     * @var int
+     */
     public $successStatus = 200;
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function register(Request $request)
     {
-//        return "New register method." . request('email');
-
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
@@ -30,27 +39,21 @@ class UserController extends Controller
         }
 
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-
-//        return response()->json(['success'=>$input['email']], $this-> successStatus);
-
         $user = User::create([
             'email'   => $input['email'],
             'password'=> $input['password'],
             'name'    => $input['name']
         ]);
-
-        /*
-                return      $input['name'] . '<br>'.
-                    $input['email'] . '<br>'.
-                    $input['password'] . '<br>'.
-                    $input['password_confirmation'] . '<br>';
-        */
         $success['token'] =  $user->createToken('MyApp')-> accessToken;
         $success['name'] =  $user->name;
+
         return response()->json(['success'=>$success], $this-> successStatus);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function login(Request $request)
     {
         $request->validate([

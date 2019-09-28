@@ -5,9 +5,9 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="/">
-                            <!--router-link :to='`/`'-->
-                                <a class="nav-link font-weight-bold" href="/">Home</a>
-                            <!--/router-link-->
+                            <router-link :to='`/`'>
+                                <a class="nav-link font-weight-bold" href="">Home</a>
+                            </router-link>
                         </a>
                     </li>
                     <li class="nav-item  ">
@@ -20,6 +20,7 @@
                 </ul>
                 <div
                     v-if="isLoggedIn"
+                    :key="loggedIn"
                     class="form-inline pull-right"
                 >
                     <span class="font-weight-bold">Logged in</span>
@@ -46,14 +47,36 @@
 <script>
 
 export default {
-  data() {
-    return {
-      isLoggedIn: null,
+    data() {
+        return {
+            loggedIn: null,
+        }
+    },
+
+    computed: {
+      isLoggedIn(){
+        if(document.querySelector('meta[name="login-status"]').content !== true)
+          return false;
+
+        return true;
+      },
+    },
+
+/*
+    watch: {
+      isLoggedIn(newValue, oldValue) {
+            if(newValue === null) {
+                this.user_id = null;
+                return;
+            }
+            this.loggedIn = newValue;
+        },
+    },
+*/
+
+    beforeCreate() {
+        this.loggedIn = document.querySelector('meta[name="login-status"]').content;
     }
-  },
-  created() {
-    this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
-  }
 }
 </script>
 

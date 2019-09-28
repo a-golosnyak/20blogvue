@@ -2,27 +2,53 @@
     <div class="login-container ">
         <h3 class="mt-5 ml-3">Register</h3>
         <form role="" method="POST" action="/register" class="pt-0 mt-5">
-            <input type="hidden" name="_token" :value="csrf_token" >
             <div class="form-control">
-            <input id="email" type="email" name="email" placeholder="Email Address" required autofocus>
+            <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required
+                autofocus
+                v-model="email">
             </div>
             <div class="form-control mb-3">
-                <input id="password" type="password" name="password" placeholder="Password" required>
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    v-model="password">
             </div>
             <div class="form-control">
-                <input id="password_confirm" type="password" name="password_confirmation" placeholder="Password Confirm" required>
+                <input
+                    id="password_confirm"
+                    type="password"
+                    name="password_confirmation"
+                    placeholder="Password Confirm"
+                    required
+                    v-model="password_confirmation"
+                >
             </div>
             <div class="form-control">
-                <input id="name" type="name" name="name" placeholder="Name" required>
+                <input
+                    id="name"
+                    type="name"
+                    name="name"
+                    placeholder="Name"
+                    required
+                    v-model="name"
+                >
             </div>
             <div class="form-control pt-4">
-                <button type="button" @click="handleRegister">Register</button>
+                <button
+                    type="button"
+                    @click="handleRegister"
+                >Register
+                </button>
             </div>
         </form>
-
-        <div class="form-control pt-4">
-            <button type="button" @click="handleLogin">Login</button>
-        </div>
 
 <!--        clients></clients-->
 <!--        <authorized-clients></authorized-clients>-->
@@ -31,7 +57,6 @@
 </template>
 
 <script>
-
     import Clients from './passport/Clients'
     import AuthorizedClients from './passport/AuthorizedClients'
     import PersonalAccessTokens from './passport/PersonalAccessTokens'
@@ -44,9 +69,6 @@
         },
         data() {
             return {
-                csrf_token: 'null',
-                isLoggedIn: null,
-
                 name : "",
                 email : "",
                 password : "",
@@ -54,25 +76,17 @@
             }
         },
         beforeCreate(){
-            this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
-            console.log(this.csrf_token);
         },
         created() {
-          this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
-
-
-
-          this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
-          console.log('Logged in: ' + this.isLoggedIn );
         },
         methods:{
             handleRegister(){
                 axios
                 .post('api/register', {
-                    'name': 'ccc',
-                    'email': 'ccc@mail.ru',
-                    'password': '111111',
-                    'password_confirmation': '111111',
+                    'name': this.name,
+                    'email': this.email,
+                    'password': this.password,
+                    'password_confirmation': this.password_confirmation,
                 })
                 .then(({data}) => {
                     console.log(data.message.message);
@@ -83,43 +97,11 @@
                     //              this.$router.go(-1);
                 })
                 .catch(({response}) => {
-                    if ((response.status == 422)) {
-                        this.errors = response.data;
-                        console.log(this.errors);
-
                         this.$toast.error({
                         title: 'Error!',
                         message: this.errors.message,
                         })
-                    }
-                })
-                .finally(() => this.isLoading = false);
-            },
-
-            handleLogin(){
-                axios
-                .post('api/login', {
-                    'email': 'bbb@mail.ru',
-                    'password': '111111',
-                })
-                .then(({data}) => {
-                    console.log(data.message.message);
-                    this.$toast.success({
-                        title: 'Success!',
-                        message: data.message,
-                    })
-                    //              this.$router.go(-1);
-                })
-                .catch(({response}) => {
-                    if ((response.status == 422)) {
-                        this.errors = response.data;
-                        console.log(this.errors);
-
-                        this.$toast.error({
-                            title: 'Error!',
-                            message: this.errors.message,
-                        })
-                    }
+//                    }
                 })
                 .finally(() => this.isLoading = false);
             },

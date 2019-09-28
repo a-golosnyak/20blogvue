@@ -23,11 +23,6 @@ class LocalUserSeeder extends Seeder
                 'password'=> '111111',
                 'name'    => 'adm'
             ]);
-            User::create([
-                'email'   => 'aaa@mail.ru',
-                'password'=> '111111',
-                'name'    => 'aaa'
-            ]);
 
         } catch (Throwable $e) {
             $this->command->info('Local user exists');

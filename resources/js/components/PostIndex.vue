@@ -53,6 +53,9 @@
             },
         },
         created() {
+            console.log(document.querySelector('meta[name="login-token"]').content);
+
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + document.querySelector('meta[name="login-token"]').content;
             axios
                 .get(`/api/post/${this.id}`)
                 .then(({data})=>{

@@ -25,7 +25,7 @@
             <button
                 :disabled="isLoading"
                 type="submit"
-                class="float-right"
+                class="float-right w-25"
             >
                 <span v-if="isUpdate">Edit</span>
                 <span v-else>Save</span>
@@ -33,7 +33,7 @@
 
             <button
                 :disabled="isLoading"
-                class="float-right mr-2"
+                class="float-right mr-2 w-25"
                 @click="$router.go(-1)"
             >
                 <span class="">Cancel</span>
@@ -173,5 +173,9 @@
         text-align: center;
         border: 1px solid lightgrey;
         margin-bottom: 2em;
+    }
+
+    button{
+        width: 6rem;
     }
 </style>
