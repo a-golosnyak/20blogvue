@@ -2,7 +2,9 @@
     <div>
         <Header>
         </Header>
-        <Navigation>
+        <Navigation
+            :loggedIn="loggedIn"
+        >
         </Navigation>
         <div class='main-field '>
             <div class='container data-field'>
@@ -22,19 +24,19 @@
         },
         data() {
             return {
-//              csrf_token: window.csrf_token,
+                loggedIn: false,
             }
         },
         created() {
-            console.log("Here App vue.");
+            console.log("Here App vue. " + window.localStorage.getItem('token'));
+            if (window.localStorage.getItem('token') !== '') {
+                this.loggedIn = true;
+            }
+
+            console.log("Here App vue. " + this.loggedIn);
         },
         methods: {
-            logout() {
-                document.getElementById('logout').submit();
-            }
         },
-        computed: {
-        }
     }
 </script>
 <style>

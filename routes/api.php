@@ -13,11 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', 'API\UserController@login');
+Route::middleware('auth:api')->get('/profile','API\UserController@getUser');
+
 Route::post('register', 'API\UserController@register');
+Route::post('login',    'API\UserController@login');
+
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get(     '/post/{post}', 'API\PostController@show');
+
+    Route::post('logout',   'API\UserController@logout');
 });
 
 Route::get(     '/posts',       'API\PostController@index')->name('api.posts.index');
@@ -25,6 +30,7 @@ Route::get(     '/posts',       'API\PostController@index')->name('api.posts.ind
 Route::post(    '/post',        'API\PostController@store')->name('api.post.store');
 Route::put(     '/post/{post}', 'API\PostController@update')->name('api.post.update');
 Route::delete(  '/post/{post}', 'API\PostController@destroy')->name('api.post.destroy');
+
 
 
 /*

@@ -20,7 +20,6 @@ class UserController extends Controller
      * @var int
      */
     public $successStatus = 200;
-
     /**
      * @param Request $request
      * @return JsonResponse
@@ -85,5 +84,13 @@ class UserController extends Controller
                 $tokenResult->token->expires_at
             )->toDateTimeString()
         ]);
+    }
+
+    public function logout (Request $request) {
+        $token = $request->user()->token();
+        $token->revoke();
+
+        $response = 'You have been succesfully logged out!';
+        return response($response, 200);
     }
 }

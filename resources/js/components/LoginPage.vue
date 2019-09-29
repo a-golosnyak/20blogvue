@@ -61,7 +61,11 @@
                     })
                     document.querySelector('meta[name="login-status"]').content = true;
                     document.querySelector('meta[name="login-token"]').content = data.access_token;
+
+                    window.localStorage.setItem('token', data.access_token)
 //                  this.$router.go(-1);
+                    location.href = '/';
+                    this.$router.push('home');
                 })
                 .catch(({response}) => {
 

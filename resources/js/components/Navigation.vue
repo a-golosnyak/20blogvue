@@ -19,23 +19,24 @@
                     </li>
                 </ul>
                 <div
-                    v-if="isLoggedIn"
-                    :key="loggedIn"
+                    v-if="loggedIn"
+                    :key=""
                     class="form-inline pull-right"
                 >
                     <span class="font-weight-bold">Logged in</span>
-                    <a href="/logout" class="nav-link font-weight-bold">Log out</a>
+                    <span
+                        href=''
+                        class="nav-link font-weight-bold link"
+                        @click="logOut"
+                    >Log out</span>
                 </div>
-
                 <div
                     v-else
                     class="form-inline pull-right"
                 >
-                    <!--a class="nav-link font-weight-bold" href="/login">Login</a-->
                     <router-link :to="`/login`">
                         <a class="nav-link font-weight-bold" href="/login">Login</a>
                     </router-link>
-                    <!--a class="nav-link font-weight-bold" href="/register">Register</a-->
                     <router-link :to="`/register`">
                         <a class="nav-link font-weight-bold" href="/login">Register</a>
                     </router-link>
@@ -49,33 +50,48 @@
 export default {
     data() {
         return {
-            loggedIn: null,
         }
     },
-
+    props:{
+      loggedIn: {
+          type: Boolean,
+          default: false,
+      }
+    },
     computed: {
-      isLoggedIn(){
-        if(document.querySelector('meta[name="login-status"]').content !== true)
-          return false;
-
-        return true;
-      },
     },
 
-/*
-    watch: {
-      isLoggedIn(newValue, oldValue) {
-            if(newValue === null) {
-                this.user_id = null;
-                return;
-            }
-            this.loggedIn = newValue;
-        },
+    created() {
+        console.log('Navi: ' + this.loggedIn )
     },
-*/
+    methods: {
+        logOut() {
 
-    beforeCreate() {
-        this.loggedIn = document.querySelector('meta[name="login-status"]').content;
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+            window.localStorage.setItem('token', '');
+            axios
+                .post('api/logout')
+                .then(({data}) => {
+                    this.$toast.success({
+                        title: 'Success! You are logged out',
+                        message: data.token_type,
+                    })
+                    document.querySelector('meta[name="login-status"]').content = '';
+                    document.querySelector('meta[name="login-token"]').content = '';
+
+                    window.localStorage.setItem('token', '')
+//                  this.$router.go(-1);
+                    location.href = '/';
+                })
+                .catch(({response}) => {
+
+                    this.$toast.error({
+                        title: 'Error!',
+                        message: this.errors.message,
+                    })
+                })
+                .finally(() => this.isLoading = false);
+        }
     }
 }
 </script>
@@ -103,6 +119,10 @@ export default {
     }
     a {
         color: #555;
+    }
+
+    .link{
+        cursor: pointer;
     }
 </style>
 

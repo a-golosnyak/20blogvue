@@ -53,9 +53,7 @@
             },
         },
         created() {
-            console.log(document.querySelector('meta[name="login-token"]').content);
-
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + document.querySelector('meta[name="login-token"]').content;
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
             axios
                 .get(`/api/post/${this.id}`)
                 .then(({data})=>{
@@ -83,7 +81,10 @@
                 axios
                     .delete(`/api/post/${this.id}`)
                     .then(({data})=>{
-                        console.log('Post Deleted.')
+                        this.$toast.success({
+                            title: 'Success!',
+                            message: 'Post deleted.',
+                        })
                         this.$router.go(-1);
                     })
                     .catch(({response}) => {

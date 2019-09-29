@@ -1778,6 +1778,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1786,18 +1788,20 @@ __webpack_require__.r(__webpack_exports__);
     Navigation: _Navigation_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
-    return {//              csrf_token: window.csrf_token,
+    return {
+      loggedIn: false
     };
   },
   created: function created() {
-    console.log("Here App vue.");
-  },
-  methods: {
-    logout: function logout() {
-      document.getElementById('logout').submit();
+    console.log("Here App vue. " + window.localStorage.getItem('token'));
+
+    if (window.localStorage.getItem('token') !== '') {
+      this.loggedIn = true;
     }
+
+    console.log("Here App vue. " + this.loggedIn);
   },
-  computed: {}
+  methods: {}
 });
 
 /***/ }),
@@ -1878,7 +1882,6 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    console.log("Here Home.");
     this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
     console.log('Logged in: ' + this.isLoggedIn);
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/posts').then(function (_ref) {
@@ -1972,7 +1975,12 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         document.querySelector('meta[name="login-status"]').content = true;
-        document.querySelector('meta[name="login-token"]').content = data.access_token; //                  this.$router.go(-1);
+        document.querySelector('meta[name="login-token"]').content = data.access_token;
+        window.localStorage.setItem('token', data.access_token); //                  this.$router.go(-1);
+
+        location.href = '/';
+
+        _this.$router.push('home');
       })["catch"](function (_ref2) {
         var response = _ref2.response;
 
@@ -2044,32 +2052,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      loggedIn: null
-    };
+    return {};
   },
-  computed: {
-    isLoggedIn: function isLoggedIn() {
-      if (document.querySelector('meta[name="login-status"]').content !== true) return false;
-      return true;
+  props: {
+    loggedIn: {
+      type: Boolean,
+      "default": false
     }
   },
+  computed: {},
+  created: function created() {
+    console.log('Navi: ' + this.loggedIn);
+  },
+  methods: {
+    logOut: function logOut() {
+      var _this = this;
 
-  /*
-      watch: {
-        isLoggedIn(newValue, oldValue) {
-              if(newValue === null) {
-                  this.user_id = null;
-                  return;
-              }
-              this.loggedIn = newValue;
-          },
-      },
-  */
-  beforeCreate: function beforeCreate() {
-    this.loggedIn = document.querySelector('meta[name="login-status"]').content;
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+      window.localStorage.setItem('token', '');
+      axios.post('api/logout').then(function (_ref) {
+        var data = _ref.data;
+
+        _this.$toast.success({
+          title: 'Success! You are logged out',
+          message: data.token_type
+        });
+
+        document.querySelector('meta[name="login-status"]').content = '';
+        document.querySelector('meta[name="login-token"]').content = '';
+        window.localStorage.setItem('token', ''); //                  this.$router.go(-1);
+
+        location.href = '/';
+      })["catch"](function (_ref2) {
+        var response = _ref2.response;
+
+        _this.$toast.error({
+          title: 'Error!',
+          message: _this.errors.message
+        });
+      })["finally"](function () {
+        return _this.isLoading = false;
+      });
+    }
   }
 });
 
@@ -2316,8 +2343,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    console.log(document.querySelector('meta[name="login-token"]').content);
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + document.querySelector('meta[name="login-token"]').content;
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/post/".concat(this.id)).then(function (_ref) {
       var data = _ref.data;
       _this.post = data;
@@ -2347,7 +2373,11 @@ __webpack_require__.r(__webpack_exports__);
       console.log("Delete method. " + this.post.title);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/post/".concat(this.id)).then(function (_ref3) {
         var data = _ref3.data;
-        console.log('Post Deleted.');
+
+        _this2.$toast.success({
+          title: 'Success!',
+          message: 'Post deleted.'
+        });
 
         _this2.$router.go(-1);
       })["catch"](function (_ref4) {
@@ -7801,7 +7831,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.navigation {\n    background: linear-gradient(\n        rgba(150, 150, 150, 0.7),\n        rgba(150, 150, 150, 0.8),\n        rgba(150, 150, 150, 0.9),\n        rgba(150, 150, 150, 1.0));\n    box-shadow: inset 0 -0.1rem 0.25rem rgba(0, 0, 0, 0.1);\n    font-size: 1.1rem;\n}\n.nav-link, .nav-item{\n    color: #777;\n}\n.nav-link:hover, .nav-item:hover{\n    color: #555;\n}\n.navbar-toggler-icon {\n    background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/1500/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E\");\n}\na {\n    color: #555;\n}\n", ""]);
+exports.push([module.i, "\n.navigation {\n    background: linear-gradient(\n        rgba(150, 150, 150, 0.7),\n        rgba(150, 150, 150, 0.8),\n        rgba(150, 150, 150, 0.9),\n        rgba(150, 150, 150, 1.0));\n    box-shadow: inset 0 -0.1rem 0.25rem rgba(0, 0, 0, 0.1);\n    font-size: 1.1rem;\n}\n.nav-link, .nav-item{\n    color: #777;\n}\n.nav-link:hover, .nav-item:hover{\n    color: #555;\n}\n.navbar-toggler-icon {\n    background-image: url(\"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/1500/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E\");\n}\na {\n    color: #555;\n}\n.link{\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -39485,7 +39515,7 @@ var render = function() {
     [
       _c("Header"),
       _vm._v(" "),
-      _c("Navigation"),
+      _c("Navigation", { attrs: { loggedIn: _vm.loggedIn } }),
       _vm._v(" "),
       _c("div", { staticClass: "main-field " }, [
         _c(
@@ -39796,25 +39826,22 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm.isLoggedIn
-          ? _c(
-              "div",
-              { key: _vm.loggedIn, staticClass: "form-inline pull-right" },
-              [
-                _c("span", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Logged in")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "nav-link font-weight-bold",
-                    attrs: { href: "/logout" }
-                  },
-                  [_vm._v("Log out")]
-                )
-              ]
-            )
+        _vm.loggedIn
+          ? _c("div", { staticClass: "form-inline pull-right" }, [
+              _c("span", { staticClass: "font-weight-bold" }, [
+                _vm._v("Logged in")
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "nav-link font-weight-bold link",
+                  attrs: { href: "" },
+                  on: { click: _vm.logOut }
+                },
+                [_vm._v("Log out")]
+              )
+            ])
           : _c(
               "div",
               { staticClass: "form-inline pull-right" },

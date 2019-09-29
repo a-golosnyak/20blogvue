@@ -42,22 +42,20 @@ export default {
         }
     },
     created() {
-        console.log("Here Home.");
-
-      this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
-      console.log('Logged in: ' + this.isLoggedIn );
+        this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
+        console.log('Logged in: ' + this.isLoggedIn );
 
         axios
-            .get('api/posts')
-            .then(({data})=>{
-                this.posts = data;
+        .get('api/posts')
+        .then(({data}) => {
+            this.posts = data;
+        })
+        .catch(({response}) => {
+            this.$toast.error({
+            title: 'Error!',
+            message: 'Unable to load posts',
             })
-            .catch(({response}) => {
-                this.$toast.error({
-                    title: 'Error!',
-                    message: 'Unable to load posts',
-                })
-            })
+        })
     },
     computed: {
 
