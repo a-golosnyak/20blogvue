@@ -126,7 +126,6 @@
     input[type=email],
     input[type=password],
     input[type=name],
-    button,
     label {
         width: 100%;
         margin-left: auto;
@@ -140,22 +139,13 @@
 
     input {
         background-color: transparent;
-        padding: 11px;
+        padding: 8px;
         border: 1px solid #dbdbdb;
         border-radius: 5px;
         box-sizing:border-box
     }
 
-    button {
-        background-color: #888;
-        color: #ffffff;
-        cursor: pointer;
-        border: #4fc08d;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        border-radius: 5px;
-        font-weight: bold;
-    }
+
 
     .form-control{
         border: none;

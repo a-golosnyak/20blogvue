@@ -12,16 +12,16 @@
                     </h6>
                     <h5>{{ post.body }}</h5>
                     <!--router-link :to="`/post/${post.id}/edit`">
-                        <button class="comment-btn float-right ml-2">Edit</button>
+                        <button class="float-right ml-2">Edit</button>
                     </router-link-->
                     <br>
                     <button
-                        class="comment-btn float-right ml-2"
+                        class="float-right ml-2"
                         @click="Edit"
                     >Edit
                     </button>
                     <button
-                        class="comment-btn float-right"
+                        class="float-right"
                         @click="Delete"
                     >Delete</button>
                     <h5
@@ -29,8 +29,13 @@
                     >Comments
                     </h5>
                     <div>
-                        <textarea class="w-100"></textarea>
-                        <button class="comment-btn float-right mt-2">Send</button>
+                        <textarea
+                            class="w-100 border-radius-3"
+                            v-model="comment.body"
+                        ></textarea>
+                        <button
+                            class="float-right mt-2"
+                            @click="SendComment">Send</button>
                     </div>
                     <br style="clear: both;" >
                     <comment></comment>
@@ -51,6 +56,11 @@
         data (){
             return{
                 post: {},
+                comment: {
+                    user_id: null,
+                    post_id: null,
+                    body: null,
+                },
             }
         },
         props: {
@@ -60,23 +70,24 @@
             },
         },
         created() {
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
-            axios
-                .get(`/api/post/${this.id}`)
-                .then(({data})=>{
-                    this.post = data;
-                })
-                .catch(({response}) => {
-                    this.$toast.error({
-                        title: 'Error!',
-                        message: 'Unable to load post',
-                    })
-                })
+            this.loadComments();
         },
-        computed: {
 
-        },
         methods: {
+            loadComments(){
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+                axios
+                    .get(`/api/post/${this.id}`)
+                    .then(({data})=>{
+                        this.post = data;
+                    })
+                    .catch(({response}) => {
+                        this.$toast.error({
+                            title: 'Error!',
+                            message: 'Unable to load post',
+                        })
+                    })
+            },
             Edit(){
                 this.$router.push({ name: 'post.edit', params: {
                     title:  this.post.title,
@@ -105,7 +116,36 @@
                             })
                         }
                     })
-            }
+            },
+            SendComment(){
+                this.isLoading = true;
+                axios
+                    .post(`/api/comments`, {
+                        'user_id':  window.localStorage.getItem('auth_user'),
+                        'post_id':  this.post.id,
+                        'body':     this.comment.body,
+                    })
+                    .then(({data}) => {
+                        this.$toast.success({
+                            title: 'Success!',
+                            message: 'Comment created.',
+                        });
+
+                        location.reload();
+                    })
+                    .catch(({response}) => {
+                        if ((response.status = 422)) {
+                            this.errors = response.data;
+                            console.log(this.errors);
+
+                            this.$toast.error({
+                                title: 'Error!',
+                                message: this.errors.message,
+                            })
+                        }
+                    })
+                    .finally(() => this.isLoading = false);
+            },
         }
     }
 </script>
@@ -120,7 +160,6 @@
     .blog-post-title {
         margin-bottom: .25rem;
         color: #505050;
-        /*  font-size: 1.5rem;  */
     }
 
     .blog-post-meta {
@@ -128,13 +167,8 @@
         color: #999;
     }
 
-    .comment-btn{
-        display: inline;
-        margin-bottom: 0.7em;
-        text-align: center;
-        padding-top: 5px;
-        padding-bottom: 5px;
+    .border-radius-3{
+        border-radius: 3px;
     }
-
 
 </style>

@@ -20,10 +20,12 @@
                 </ul>
                 <div
                     v-if="loggedIn"
-                    :key=""
                     class="form-inline pull-right"
                 >
-                    <span class="font-weight-bold">Logged in</span>
+                    <router-link :to="`/profile`">
+                        <a class="nav-link font-weight-bold" href="/profile">Profile</a>
+                    </router-link>
+
                     <span
                         href=''
                         class="nav-link font-weight-bold link"
@@ -66,9 +68,11 @@ export default {
     },
     methods: {
         logOut() {
-
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+
             window.localStorage.setItem('token', '');
+            window.localStorage.setItem('auth_user', '');
+
             axios
                 .post('/api/logout')
                 .then(({data}) => {
@@ -80,8 +84,8 @@ export default {
                     document.querySelector('meta[name="login-token"]').content = '';
 
                     window.localStorage.setItem('token', '')
+                    window.localStorage.setItem('auth_user', '');
 //                  this.$router.go(-1);
-                    location.href = '/';
                 })
                 .catch(({response}) => {
 
@@ -90,7 +94,10 @@ export default {
                         message: this.errors.message,
                     })
                 })
-                .finally(() => this.isLoading = false);
+                .finally(() => {
+                    this.isLoading = false
+                     location.href = '/';
+                });
         }
     }
 }

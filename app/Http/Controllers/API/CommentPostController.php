@@ -13,8 +13,9 @@ use App\Models\User;
  */
 class CommentPostController extends Controller
 {
-    public function index(Post $post) {
-        $comment = Comment::where(['post_id'=>$post->id])->with('user')->get();
+    public function index(Post $post)
+    {
+        $comment = Comment::where(['post_id'=>$post->id])->with('user')->orderByDesc('created_at')->get();
         return $comment;
     }
 }

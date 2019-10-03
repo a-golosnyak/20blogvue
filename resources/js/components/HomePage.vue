@@ -15,7 +15,7 @@
                     <br>
                     <div class='post-footer'>
                         <router-link :to="`/post/${post.id}`">
-                            <button class="comment-btn">More...</button>
+                            <button class="">More...</button>
                         </router-link>
 
                         <!--a href="/delete/" class="float-left mr-2"><button class="">Edit</button></a>
@@ -79,10 +79,6 @@ export default {
     .blog-post-meta {
         margin-bottom: 1.25rem;
         color: #999;
-    }
-
-    .comment-btn {
-        width: 6rem;
     }
 
 </style>

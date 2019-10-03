@@ -63,9 +63,10 @@
                     document.querySelector('meta[name="login-token"]').content = data.access_token;
 
                     window.localStorage.setItem('token', data.access_token)
+                    window.localStorage.setItem('auth_user', data.user_id);
 //                  this.$router.go(-1);
                     location.href = '/';
-                    this.$router.push('home');
+//                  this.$router.push('home');
                 })
                 .catch(({response}) => {
 
@@ -81,55 +82,5 @@
 </script>
 
 <style>
-    #login form {
-        padding-top: 40px;
-    }
 
-    @media (min-width: 744px) {
-        #login form {
-            padding-top: 80px;
-        }
-    }
-
-    #login .form-control {
-        margin-bottom: 3em;
-    }
-
-    #login input[type=email],
-    #login input[type=password],
-    #login button,
-    #login label {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 19px !important;
-        line-height: 24px;
-        color: #484848;
-        font-weight: 300;
-        -webkit-appearance: none;
-    }
-
-    #login input {
-        background-color: transparent;
-        padding: 11px;
-        border: 1px solid #dbdbdb;
-        border-radius: 5px;
-        box-sizing:border-box
-    }
-
-    #login button {
-        background-color: #888;
-        color: #ffffff;
-        cursor: pointer;
-        border: #4fc08d;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        border-radius: 5px;
-        font-weight: bold;
-    }
-
-    .form-control{
-        border: none;
-        width: 60%;
-    }
 </style>

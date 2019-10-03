@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', 'API\UserController@register');
 Route::post('login',    'API\UserController@login');
 
-Route::get('comments/{post}', 'API\CommentPostController@index');
+
+
+Route::get(     '/posts',       'API\PostController@index')->name('api.posts.index');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get(     '/post/{post}', 'API\PostController@show');
@@ -24,7 +26,9 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::put(     '/post/{post}', 'API\PostController@update')->name('api.post.update');
     Route::delete(  '/post/{post}', 'API\PostController@destroy')->name('api.post.destroy');
 
+    Route::get('comments/{post}', 'API\CommentPostController@index');
+    Route::post('/comments','API\CommentController@store')->name('api.comment.store');
+
     Route::post('logout',   'API\UserController@logout');
 });
 
-Route::get(     '/posts',       'API\PostController@index')->name('api.posts.index');
