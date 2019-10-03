@@ -13,33 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/profile','API\UserController@getUser');
-
 Route::post('register', 'API\UserController@register');
 Route::post('login',    'API\UserController@login');
 
+Route::get('comments/{post}', 'API\CommentPostController@index');
 
 Route::group(['middleware' => 'auth:api'], function() {
     Route::get(     '/post/{post}', 'API\PostController@show');
+    Route::post(    '/post',        'API\PostController@store')->name('api.post.store');
+    Route::put(     '/post/{post}', 'API\PostController@update')->name('api.post.update');
+    Route::delete(  '/post/{post}', 'API\PostController@destroy')->name('api.post.destroy');
 
     Route::post('logout',   'API\UserController@logout');
 });
 
 Route::get(     '/posts',       'API\PostController@index')->name('api.posts.index');
-//Route::get('/post/{post}', 'API\PostController@show')->name('api.post.show')->middleware('auth:api');
-Route::post(    '/post',        'API\PostController@store')->name('api.post.store');
-Route::put(     '/post/{post}', 'API\PostController@update')->name('api.post.update');
-Route::delete(  '/post/{post}', 'API\PostController@destroy')->name('api.post.destroy');
-
-
-
-/*
-Route::middleware('auth:api')->group(function () {
-    Route::get('/post/{post}', 'API\PostController@show')->name('api.post.show');
-});
-*/
-/*
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::get(     '/post/{post}', 'API\PostController@show')->name('api.post.show');
-});
-*/

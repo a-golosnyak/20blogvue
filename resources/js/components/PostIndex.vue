@@ -6,20 +6,15 @@
                     v-if="post.user"
                 >
                     <h2 class='blog-post-title'>{{ post.title }}</h2>
-
                     <h6 class='blog-post-meta'>
                         {{ post.created_at }} auhor {{ post.user.name }}
                         <a class='none-decored' href='#'></a>
                     </h6>
-
                     <h5>{{ post.body }}</h5>
-
-                    <hr>
-
                     <!--router-link :to="`/post/${post.id}/edit`">
                         <button class="comment-btn float-right ml-2">Edit</button>
                     </router-link-->
-
+                    <br>
                     <button
                         class="comment-btn float-right ml-2"
                         @click="Edit"
@@ -29,8 +24,16 @@
                         class="comment-btn float-right"
                         @click="Delete"
                     >Delete</button>
-                    <br>
-                    <br>
+                    <h5
+                        class="mt-5"
+                    >Comments
+                    </h5>
+                    <div>
+                        <textarea class="w-100"></textarea>
+                        <button class="comment-btn float-right mt-2">Send</button>
+                    </div>
+                    <br style="clear: both;" >
+                    <comment></comment>
                 </div>
             </div>
         </div>
@@ -38,9 +41,13 @@
 
 <script>
     import axios from 'axios';
+    import Comment from './Comment'
 
     export default {
         name: 'PostIndex',
+        components:{
+          Comment,
+        },
         data (){
             return{
                 post: {},
@@ -125,6 +132,8 @@
         display: inline;
         margin-bottom: 0.7em;
         text-align: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 
 

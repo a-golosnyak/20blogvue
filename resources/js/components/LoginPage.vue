@@ -24,7 +24,7 @@
                 >
             </div>
             <div class="form-control">
-                <input type='checkbox' name='remember'> Запомнить меня
+                <input type='checkbox' name='remember'> Remember me
             </div>
             <div class="form-control pt-4">
                 <button type="button" @click="handleLogin">Log in</button>

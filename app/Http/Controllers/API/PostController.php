@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePost;
 use App\Http\Requests\UpdatePost;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 /**
  * Class PostController

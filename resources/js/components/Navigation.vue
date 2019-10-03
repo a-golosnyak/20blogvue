@@ -70,7 +70,7 @@ export default {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
             window.localStorage.setItem('token', '');
             axios
-                .post('api/logout')
+                .post('/api/logout')
                 .then(({data}) => {
                     this.$toast.success({
                         title: 'Success! You are logged out',
