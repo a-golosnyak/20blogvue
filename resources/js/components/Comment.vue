@@ -7,6 +7,16 @@
                 <span>{{ comment.user.name }}</span>
                 <span>{{ comment.created_at }}</span>
                 <span>{{ comment.body }}</span>
+                <button
+                    class="float-right ml-2 py-0 px-2"
+                    @click="Edit"
+                >Edit
+                </button>
+                <button
+                    class="float-right py-0 px-2"
+                    @click="Delete"
+                >Delete
+                </button>
             </div>
         </div>
     </div>

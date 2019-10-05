@@ -1829,6 +1829,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2396,6 +2406,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2478,6 +2490,7 @@ __webpack_require__.r(__webpack_exports__);
     SendComment: function SendComment() {
       var _this3 = this;
 
+      alert('Comment!!!');
       this.isLoading = true;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/comments", {
         'user_id': window.localStorage.getItem('auth_user'),
@@ -39624,7 +39637,22 @@ var render = function() {
           _vm._v(" "),
           _c("span", [_vm._v(_vm._s(comment.created_at))]),
           _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(comment.body))])
+          _c("span", [_vm._v(_vm._s(comment.body))]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "float-right ml-2 py-0 px-2",
+              on: { click: _vm.Edit }
+            },
+            [_vm._v("Edit\n            ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "float-right py-0 px-2", on: { click: _vm.Delete } },
+            [_vm._v("Delete\n            ")]
+          )
         ])
       ])
     }),
@@ -40188,9 +40216,10 @@ var render = function() {
                   "button",
                   {
                     staticClass: "float-right mt-2",
+                    attrs: { disabled: _vm.isLoading },
                     on: { click: _vm.SendComment }
                   },
-                  [_vm._v("Send")]
+                  [_vm._v("Send\n                ")]
                 )
               ]),
               _vm._v(" "),

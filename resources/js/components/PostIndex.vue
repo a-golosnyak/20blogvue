@@ -35,7 +35,9 @@
                         ></textarea>
                         <button
                             class="float-right mt-2"
-                            @click="SendComment">Send</button>
+                            :disabled="isLoading"
+                            @click="SendComment">Send
+                        </button>
                     </div>
                     <br style="clear: both;" >
                     <comment></comment>
@@ -118,6 +120,7 @@
                     })
             },
             SendComment(){
+                alert('Comment!!!');
                 this.isLoading = true;
                 axios
                     .post(`/api/comments`, {
