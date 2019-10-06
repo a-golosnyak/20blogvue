@@ -120,7 +120,6 @@
                     })
             },
             SendComment(){
-                alert('Comment!!!');
                 this.isLoading = true;
                 axios
                     .post(`/api/comments`, {
