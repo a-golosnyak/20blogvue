@@ -33,13 +33,13 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-//        $this->authorize('view', Post::class);
+//        $this->authorize('view', Post::class);      ->with('comment')->get()
         return $post;
     }
 
     /**
      * @param CreatePost $request
-     * @return mixed
+     * @return mixed0
      */
     public function store(CreatePost $request)
     {

@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('comments/{post}', 'API\CommentPostController@index');
     Route::post('/comments','API\CommentController@store')->name('api.comment.store');
+    Route::put(     '/comments/{comment}', 'API\CommentController@update')->name('api.comment.update');
+    Route::delete(  '/comments/{comment}', 'API\CommentController@destroy')->name('api.comment.destroy');
+
 
     Route::post('logout',   'API\UserController@logout');
 });

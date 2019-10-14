@@ -1,5 +1,5 @@
 <template>
-    <div class='col-md-8 blog-main mt-5'>
+    <div class='col-md-9 blog-main mt-5'>
         <h3 class='form-signin-heading profile-title mb-5'>New post</h3>
 
         <form

@@ -1,5 +1,5 @@
 <template>
-        <div class='col-md-8 blog-main '>
+        <div class='col-md-9 blog-main '>
             <div class='blog-post '>
                 <div
                     class='container-fluid p-4'
@@ -40,7 +40,11 @@
                         </button>
                     </div>
                     <br style="clear: both;" >
-                    <comment></comment>
+                    <div v-for="comment in comments" >
+                        <comment
+                            :comment="comment"
+                        ></comment>
+                </div>
                 </div>
             </div>
         </div>
@@ -58,11 +62,15 @@
         data (){
             return{
                 post: {},
+                comments : [],
+
                 comment: {
                     user_id: null,
                     post_id: null,
                     body: null,
                 },
+
+                isLoading: null,
             }
         },
         props: {
@@ -72,11 +80,12 @@
             },
         },
         created() {
-            this.loadComments();
+            this.loadPost();
+            this.loadPostComments();
         },
 
         methods: {
-            loadComments(){
+            loadPost(){
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
                 axios
                     .get(`/api/post/${this.id}`)
@@ -90,6 +99,29 @@
                         })
                     })
             },
+
+            loadPostComments(){
+                console.log("getComments");
+
+                axios
+                    .get(`/api/comments/${this.id}`)
+                    .then(({data})=>{
+                        this.comments = data;
+//                        console.log(this.comments)
+                    })
+                    .catch(({response}) =>{
+                        if((response.status = 422)) {
+                            this.errors = response.data;
+                            console.log(this.errors);
+
+                            this.$toast.error({
+                                title: 'Error!',
+                                message: this.errors.message,
+                            })
+                        }
+                    })
+            },
+
             Edit(){
                 this.$router.push({ name: 'post.edit', params: {
                     title:  this.post.title,

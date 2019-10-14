@@ -1,6 +1,6 @@
 <template>
     <div class='row'>
-        <div class='col-md-8 blog-main '>
+        <div class='col-md-9 blog-main '>
             <div class='blog-post'>
                 <div
                     v-for="post in posts"

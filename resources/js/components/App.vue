@@ -25,9 +25,15 @@
         data() {
             return {
                 loggedIn: false,
+                token: null,
+                authUser: null
             }
         },
         created() {
+
+            this.token = window.localStorage.getItem('token');
+            this.authUser = window.localStorage.getItem('auth_user');
+
             console.log("Here App vue. " + window.localStorage.getItem('token') + ' = ' + window.localStorage.getItem('auth_user'));
 
             if (window.localStorage.getItem('token') !== '') {

@@ -1,50 +1,80 @@
 <template>
     <div>
-        <div
-            v-for="comment in comments"
-        >
-            <div class="border rounded my-3 p-2">
-                <span>{{ comment.user.name }}</span>
-                <span>{{ comment.created_at }}</span>
-                <span>{{ comment.body }}</span>
-                <button
-                    class="float-right ml-2 py-0 px-2"
-                    @click="Edit"
-                >Edit
-                </button>
-                <button
-                    class="float-right py-0 px-2"
-                    @click="Delete"
-                >Delete
-                </button>
-            </div>
+        <div class="border rounded my-3 p-2">
+            <span>{{ comment.user.name }}</span>
+            <span>{{ comment.created_at }}</span>
+            <span
+                v-if="editing"
+            >
+                <input
+                    v-model="comment.body"
+                    class="w-50"
+                ></input>
+            </span>
+            <span
+                v-else
+                v-text="comment.body"
+            >
+            </span>
+            <button
+                class="float-right ml-2 py-0 px-2"
+                @click="Edit"
+            >Edit
+            </button>
+            <button
+                v-if="editing"
+                class="float-right py-0 px-2"
+                @click="Save"
+            >Save
+            </button>
+            <button
+                v-else
+                class="float-right py-0 px-2"
+                @click="Delete"
+            >Delete
+            </button>
         </div>
     </div>
 </template>
 
 <script>
+    import SavedPage from "./SavedPage";
     export default {
+        components: {SavedPage},
         data () {
             return {
-                comments : [],
+                editing: false,
             }
         },
+        props:{
+          comment: {
+              Type: Object,
+              required: true,
+          }
+        },
         created(){
-            this.getPostComments();
-
         },
         methods: {
-            getPostComments(){
-                console.log("getComments");
+            Edit(){
+                this.editing = !this.editing;
+            },
+            Save(){
+
+            },
+            Delete(){
+//                axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
 
                 axios
-                    .get('/api/comments/1')
+                    .delete(`/api/comments/${this.comment.id}`)
                     .then(({data})=>{
-                        this.comments = data;
-//                        console.log(this.comments)
+                        this.$toast.success({
+                            title: 'Success!',
+                            message: 'Comment deleted.',
+                        })
+                        this.$router.go();
                     })
-                    .catch(({response}) =>{
-                        if((response.status = 422)) {
+                    .catch(({response}) => {
+                        if ((response.status = 422)) {
                             this.errors = response.data;
                             console.log(this.errors);
 
@@ -54,12 +84,14 @@
                             })
                         }
                     })
-            }
+            },
         },
     }
 </script>
 
 <style>
-
+    input{
+        paddig: 0px;
+    }
 </style>
 
