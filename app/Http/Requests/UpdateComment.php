@@ -24,8 +24,6 @@ class UpdateComment extends FormRequest
     public function rules()
     {
         return [
-            'user_id' =>    ['required', 'exists:users,id'],
-            'post_id'  =>   ['required', 'exists:post,id'],
             'body' =>       ['required', 'string', 'min:5'],
         ];
     }

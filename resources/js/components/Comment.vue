@@ -59,7 +59,30 @@
                 this.editing = !this.editing;
             },
             Save(){
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+                axios
+                    .put(`/api/comments/${this.comment.id}`, {
+                        'body':     this.comment.body
+                    })
+                    .then((data)=>{
+                        this.editing = false;
 
+                        this.$toast.success({
+                            title: 'Success!',
+                            message: 'Comment updated.',
+                        })
+                    })
+                    .catch(({response}) => {
+                        if ((response.status = 422)) {
+                            this.errors = response.data;
+                            console.log(this.errors);
+
+                            this.$toast.error({
+                                title: 'Error!',
+                                message: this.errors.message,
+                            })
+                        }
+                    })
             },
             Delete(){
 //                axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');

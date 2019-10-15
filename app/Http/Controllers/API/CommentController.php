@@ -22,11 +22,23 @@ class CommentController extends Controller
         return Comment::create($commentValidated);
     }
 
+    /**
+     * @param Comment $comment
+     * @param UpdateComment $request
+     * @return string
+     */
     public function update(Comment $comment, UpdateComment $request)
     {
+        return response()->json(tap($comment)->update($request->validated()), 202);
+        return 'Here!';
         return $comment->update($request->validated());
     }
 
+    /**
+     * @param Comment $comment
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Exception
+     */
     public function destroy(Comment $comment)
     {
 //        $this->authorize('delete', Comment::class);
