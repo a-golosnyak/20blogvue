@@ -67,6 +67,7 @@
 //                  this.$router.go(-1);
                     location.href = '/';
 //                  this.$router.push('home');
+                    axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
                 })
                 .catch(({response}) => {
 

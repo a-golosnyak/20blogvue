@@ -17,12 +17,12 @@
                     <br>
                     <button
                         class="float-right ml-2"
-                        @click="Edit"
+                        @click="editPost"
                     >Edit
                     </button>
                     <button
                         class="float-right"
-                        @click="Delete"
+                        @click="deletePost"
                     >Delete</button>
                     <h5
                         class="mt-5"
@@ -40,11 +40,10 @@
                         </button>
                     </div>
                     <br style="clear: both;" >
-                    <div v-for="comment in comments" >
-                        <comment
-                            :comment="comment"
-                        ></comment>
-                </div>
+
+                    <comment-list
+                        :post_id="this.id"
+                    ></comment-list>
                 </div>
             </div>
         </div>
@@ -52,17 +51,16 @@
 
 <script>
     import axios from 'axios';
-    import Comment from './Comment'
+    import CommentList from './CommentList'
 
     export default {
         name: 'PostIndex',
         components:{
-          Comment,
+          CommentList,
         },
         data (){
             return{
                 post: {},
-                comments : [],
 
                 comment: {
                     user_id: null,
@@ -81,7 +79,6 @@
         },
         created() {
             this.loadPost();
-            this.loadPostComments();
         },
 
         methods: {
@@ -99,37 +96,13 @@
                         })
                     })
             },
-
-            loadPostComments(){
-                console.log("getComments");
-
-                axios
-                    .get(`/api/comments/${this.id}`)
-                    .then(({data})=>{
-                        this.comments = data;
-//                        console.log(this.comments)
-                    })
-                    .catch(({response}) =>{
-                        if((response.status = 422)) {
-                            this.errors = response.data;
-                            console.log(this.errors);
-
-                            this.$toast.error({
-                                title: 'Error!',
-                                message: this.errors.message,
-                            })
-                        }
-                    })
-            },
-
-            Edit(){
+            editPost(){
                 this.$router.push({ name: 'post.edit', params: {
                     title:  this.post.title,
                     body:   this.post.body
                 }})
             },
-            Delete(){
-                console.log("Delete method. " + this.post.title);
+            deletePost(){
                 axios
                     .delete(`/api/post/${this.id}`)
                     .then(({data})=>{

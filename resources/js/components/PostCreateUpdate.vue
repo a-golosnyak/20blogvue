@@ -91,11 +91,9 @@
         methods: {
             save(){
                 if(!this.isUpdate) {
-                  console.log("Save post.");
                   this.createPost();
                 }
                 else{
-                  console.log("Edit post.");
                   this.updatePost();
                 }
             },

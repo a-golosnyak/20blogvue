@@ -1,73 +1,60 @@
 <template>
-    <div class="">
-        <div class="d-flex flex-row border rounded my-2 p-2 align-items-center">
-            <div class="d-flex flex-row flex-grow-1 align-items-center">
-                <div class="" v-text="comment.user.name"></div>
-                <div class="ml-3" v-text="comment.created_at"></div>
-                <div
-                    v-if="editing"
-                    class="ml-3"
-                >
-                    <input
-                        v-model="comment.body"
-                        class="p-1 m-0"
-                    />
-                </div>
-                <div
-                    v-else
-                    class="ml-3"
-                    v-text="comment.body"
-                >
-                </div>
-            </div>
-            <button
-                v-if="editing"
-                class="px-3"
-                @click="editing = !editing"
-            >Cancel
-            </button>
-            <button
-                v-else
-                class="px-3"
-                @click="Delete"
-            >Delete
-            </button>
-
-            <button
-                v-if="editing"
-                class="px-4 ml-2"
-                @click="Save"
-            >Save
-            </button>
-            <button
-                v-else
-                class="ml-2"
-                @click="Edit"
-            >Edit
-            </button>
-
-
+    <div>
+        <div v-for="comment in comments" >
+            <comment
+                    class=""
+                    :comment="comment"
+                    @save="Save"
+                    @delete="Delete"
+            ></comment>
         </div>
     </div>
 </template>
 
 <script>
+    import Comment from "./Comment";
+
     export default {
-        name: 'Comment',
+        name: 'CommentList',
+
+        components: {
+            Comment
+        },
         data () {
             return {
-                editing: false,
+                comments : [],
             }
         },
         props:{
-          comment: {
-              Type: Object,
-              required: true,
-          }
+            post_id: {
+                type: String,
+                default: null,
+            },
         },
-        created(){
+        created() {
+            this.loadPostComments();
         },
         methods: {
+            loadPostComments(){
+                axios
+                    .get(`/api/comments/${this.post_id}`)
+                    .then(({data})=>{
+                        this.comments = data;
+//                        console.log(this.comments)
+                    })
+                    .catch(({response}) =>{
+                        if((response.status = 422)) {
+                            this.errors = response.data;
+                            console.log(this.errors);
+
+                            this.$toast.error({
+                                title: 'Error!',
+                                message: this.errors.message,
+                            })
+                        }
+                    })
+            },
+
             Edit(){
                 this.editing = !this.editing;
             },
@@ -97,6 +84,7 @@
                     })
             },
             Delete(){
+
                 axios
                     .delete(`/api/comments/${this.comment.id}`)
                     .then(({data})=>{
@@ -118,14 +106,13 @@
                         }
                     })
             },
-            Cancel(){
-
-            }
         },
     }
 </script>
 
 <style>
-
+    input{
+        paddig: 0px;
+    }
 </style>
 

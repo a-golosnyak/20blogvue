@@ -34,13 +34,12 @@
             this.token = window.localStorage.getItem('token');
             this.authUser = window.localStorage.getItem('auth_user');
 
-            console.log("Here App vue. " + window.localStorage.getItem('token') + ' = ' + window.localStorage.getItem('auth_user'));
+            console.log("Here App vue. " + window.localStorage.getItem('token') + '\nauth_user = ' + window.localStorage.getItem('auth_user'));
 
             if (window.localStorage.getItem('token') !== '') {
                 this.loggedIn = true;
             }
 
-            console.log("Here App vue. " + this.loggedIn);
         },
         methods: {
         },

@@ -64,7 +64,6 @@ export default {
     },
 
     created() {
-        console.log('Navi: ' + this.loggedIn )
     },
     methods: {
         logOut() {
