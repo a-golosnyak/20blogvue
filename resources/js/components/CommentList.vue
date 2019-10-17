@@ -4,8 +4,8 @@
             <comment
                     class=""
                     :comment="comment"
-                    @save="Save"
-                    @delete="Delete"
+                    @update="updateComment"
+                    @delete="deleteComment"
             ></comment>
         </div>
     </div>
@@ -22,46 +22,22 @@
         },
         data () {
             return {
-                comments : [],
             }
         },
         props:{
-            post_id: {
-                type: String,
+            comments: {
+                type: Array,
                 default: null,
             },
         },
         created() {
-            this.loadPostComments();
+
         },
         methods: {
-            loadPostComments(){
+            updateComment(comment){
                 axios
-                    .get(`/api/comments/${this.post_id}`)
-                    .then(({data})=>{
-                        this.comments = data;
-//                        console.log(this.comments)
-                    })
-                    .catch(({response}) =>{
-                        if((response.status = 422)) {
-                            this.errors = response.data;
-                            console.log(this.errors);
-
-                            this.$toast.error({
-                                title: 'Error!',
-                                message: this.errors.message,
-                            })
-                        }
-                    })
-            },
-
-            Edit(){
-                this.editing = !this.editing;
-            },
-            Save(){
-                axios
-                    .put(`/api/comments/${this.comment.id}`, {
-                        'body':     this.comment.body
+                    .put(`/api/comment/${comment.id}`, {
+                        'body': comment.body
                     })
                     .then((data)=>{
                         this.editing = false;
@@ -83,16 +59,23 @@
                         }
                     })
             },
-            Delete(){
-
+            deleteComment(id){
                 axios
-                    .delete(`/api/comments/${this.comment.id}`)
+                    .delete(`/api/comment/${id}`)
                     .then(({data})=>{
                         this.$toast.success({
                             title: 'Success!',
                             message: 'Comment deleted.',
                         })
-//                        this.$router.go();
+
+                        let index = this.comments.findIndex(function(comment) {
+                            return comment.id === id;
+                        });
+
+                        if (index === -1) return
+
+                        this.comments.splice(index, 1);
+
                     })
                     .catch(({response}) => {
                         if ((response.status = 422)) {

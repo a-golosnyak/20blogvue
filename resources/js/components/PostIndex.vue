@@ -40,9 +40,11 @@
                         </button>
                     </div>
                     <br style="clear: both;" >
+                    <br>
 
                     <comment-list
                         :post_id="this.id"
+                        :comments="comments"
                     ></comment-list>
                 </div>
             </div>
@@ -61,7 +63,7 @@
         data (){
             return{
                 post: {},
-
+                comments : [],
                 comment: {
                     user_id: null,
                     post_id: null,
@@ -79,6 +81,7 @@
         },
         created() {
             this.loadPost();
+            this.loadPostComments();
         },
 
         methods: {
@@ -124,10 +127,29 @@
                         }
                     })
             },
+
+            loadPostComments(){
+                axios
+                    .get(`/api/comment/${this.id}`)
+                    .then(({data})=>{
+                        this.comments = data;
+                    })
+                    .catch(({response}) =>{
+                        if((response.status = 422)) {
+                            this.errors = response.data;
+                            console.log(this.errors);
+
+                            this.$toast.error({
+                                title: 'Error!',
+                                message: this.errors.message,
+                            })
+                        }
+                    })
+            },
             SendComment(){
                 this.isLoading = true;
                 axios
-                    .post(`/api/comments`, {
+                    .post(`/api/comment`, {
                         'user_id':  window.localStorage.getItem('auth_user'),
                         'post_id':  this.post.id,
                         'body':     this.comment.body,

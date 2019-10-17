@@ -46,7 +46,7 @@ export default {
         console.log('Logged in: ' + this.isLoggedIn );
 
         axios
-        .get('api/posts')
+        .get('/api/post')
         .then(({data}) => {
             this.posts = data;
         })

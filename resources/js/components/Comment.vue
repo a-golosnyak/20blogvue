@@ -23,26 +23,26 @@
             <button
                 v-if="editing"
                 class="px-3"
-                @click="editing = !editing"
+                @click="editing = false"
             >Cancel
             </button>
             <button
                 v-else
                 class="px-3"
-                @click="Delete"
+                @click="$emit('delete', comment.id)"
             >Delete
             </button>
 
             <button
                 v-if="editing"
                 class="px-4 ml-2"
-                @click="Save"
+                @click="saveComment(comment)"
             >Save
             </button>
             <button
                 v-else
                 class="ml-2"
-                @click="Edit"
+                @click="editing = !editing"
             >Edit
             </button>
 
@@ -68,58 +68,9 @@
         created(){
         },
         methods: {
-            Edit(){
-                this.editing = !this.editing;
-            },
-            Save(){
-                axios
-                    .put(`/api/comments/${this.comment.id}`, {
-                        'body':     this.comment.body
-                    })
-                    .then((data)=>{
-                        this.editing = false;
-
-                        this.$toast.success({
-                            title: 'Success!',
-                            message: 'Comment updated.',
-                        })
-                    })
-                    .catch(({response}) => {
-                        if ((response.status = 422)) {
-                            this.errors = response.data;
-                            console.log(this.errors);
-
-                            this.$toast.error({
-                                title: 'Error!',
-                                message: this.errors.message,
-                            })
-                        }
-                    })
-            },
-            Delete(){
-                axios
-                    .delete(`/api/comments/${this.comment.id}`)
-                    .then(({data})=>{
-                        this.$toast.success({
-                            title: 'Success!',
-                            message: 'Comment deleted.',
-                        })
-//                        this.$router.go();
-                    })
-                    .catch(({response}) => {
-                        if ((response.status = 422)) {
-                            this.errors = response.data;
-                            console.log(this.errors);
-
-                            this.$toast.error({
-                                title: 'Error!',
-                                message: this.errors.message,
-                            })
-                        }
-                    })
-            },
-            Cancel(){
-
+            saveComment(newComment){
+                this.$emit("update", newComment);
+                this.editing = false;
             }
         },
     }

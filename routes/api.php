@@ -18,18 +18,18 @@ Route::post('login',    'API\UserController@login');
 
 
 
-Route::get(     '/posts',       'API\PostController@index')->name('api.posts.index');
+Route::get(     '/post',       'API\PostController@index')->name('api.post.index');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::get(     '/post/{post}', 'API\PostController@show');
+    Route::get(     '/post/{post}', 'API\PostController@show')->name('api.post.show');
     Route::post(    '/post',        'API\PostController@store')->name('api.post.store');
     Route::put(     '/post/{post}', 'API\PostController@update')->name('api.post.update');
     Route::delete(  '/post/{post}', 'API\PostController@destroy')->name('api.post.destroy');
 
-    Route::get('comments/{post}', 'API\CommentPostController@index');
-    Route::post('/comments','API\CommentController@store')->name('api.comment.store');
-    Route::put(     '/comments/{comment}', 'API\CommentController@update')->name('api.comment.update');
-    Route::delete(  '/comments/{comment}', 'API\CommentController@destroy')->name('api.comment.destroy');
+    Route::get('comment/{post}', 'API\CommentPostController@index');
+    Route::post('/comment','API\CommentController@store')->name('api.comment.store');
+    Route::put(     '/comment/{comment}', 'API\CommentController@update')->name('api.comment.update');
+    Route::delete(  '/comment/{comment}', 'API\CommentController@destroy')->name('api.comment.destroy');
 
 
     Route::post('logout',   'API\UserController@logout');

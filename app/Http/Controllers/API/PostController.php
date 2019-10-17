@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePost;
 use App\Http\Requests\UpdatePost;
 use App\Models\Post;
+use Exception;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Class PostController
@@ -33,7 +35,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-//        $this->authorize('view', Post::class);      ->with('comment')->get()
         return $post;
     }
 
@@ -50,7 +51,7 @@ class PostController extends Controller
     /**
      * @param Post $post
      * @param UpdatePost $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(Post $post, UpdatePost $request)
     {
@@ -60,7 +61,7 @@ class PostController extends Controller
     /**
      * @param Post $post
      * @return Post
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Post $post)
     {
