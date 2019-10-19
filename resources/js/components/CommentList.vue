@@ -2,10 +2,10 @@
     <div>
         <div v-for="comment in comments" >
             <comment
-                    class=""
-                    :comment="comment"
-                    @update="updateComment"
-                    @delete="deleteComment"
+                :comment="comment"
+                :isLoading="isLoading"
+                @update="updateComment"
+                @delete="deleteComment"
             ></comment>
         </div>
     </div>
@@ -22,6 +22,7 @@
         },
         data () {
             return {
+                isLoading: null,
             }
         },
         props:{
@@ -35,6 +36,8 @@
         },
         methods: {
             updateComment(comment){
+                this.isLoading = true;
+
                 axios
                     .put(`/api/comment/${comment.id}`, {
                         'body': comment.body
@@ -58,8 +61,10 @@
                             })
                         }
                     })
+                    .finally(() => this.isLoading = false);
             },
             deleteComment(id){
+                this.isLoading = true;
                 axios
                     .delete(`/api/comment/${id}`)
                     .then(({data})=>{
@@ -88,6 +93,7 @@
                             })
                         }
                     })
+                    .finally(() => this.isLoading = false);
             },
         },
     }

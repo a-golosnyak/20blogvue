@@ -43,7 +43,6 @@
                     <br>
 
                     <comment-list
-                        :post_id="this.id"
                         :comments="comments"
                     ></comment-list>
                 </div>
@@ -69,7 +68,6 @@
                     post_id: null,
                     body: null,
                 },
-
                 isLoading: null,
             }
         },
@@ -83,7 +81,13 @@
             this.loadPost();
             this.loadPostComments();
         },
-
+/*
+        computed: {
+            hasComments(){
+                return !!this.comments && this.comments.length > 0;
+            }
+        },
+*/
         methods: {
             loadPost(){
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
@@ -106,6 +110,7 @@
                 }})
             },
             deletePost(){
+                this.isLoading = true;
                 axios
                     .delete(`/api/post/${this.id}`)
                     .then(({data})=>{
@@ -126,6 +131,7 @@
                             })
                         }
                     })
+                    .finally(() => this.isLoading = false);
             },
 
             loadPostComments(){
@@ -160,7 +166,7 @@
                             message: 'Comment created.',
                         });
 
-                        location.reload();
+                        this.comments.unshift(data);
                     })
                     .catch(({response}) => {
                         if ((response.status = 422)) {

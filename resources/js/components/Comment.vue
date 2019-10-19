@@ -24,12 +24,14 @@
                 v-if="editing"
                 class="px-3"
                 @click="editing = false"
+                :disabled="isLoading"
             >Cancel
             </button>
             <button
                 v-else
                 class="px-3"
                 @click="$emit('delete', comment.id)"
+                :disabled="isLoading"
             >Delete
             </button>
 
@@ -37,6 +39,7 @@
                 v-if="editing"
                 class="px-4 ml-2"
                 @click="saveComment(comment)"
+                :disabled="isLoading"
             >Save
             </button>
             <button
@@ -60,10 +63,14 @@
             }
         },
         props:{
-          comment: {
-              Type: Object,
-              required: true,
-          }
+            comment: {
+                Type: Object,
+                required: true,
+            },
+            isLoading: {
+                type: Boolean,
+                default: false
+            },
         },
         created(){
         },

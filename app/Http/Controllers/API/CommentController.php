@@ -17,9 +17,9 @@ class CommentController extends Controller
             'body'  => 'required|string',
         ]);
 
-//        return $commentValidated;
+        $comment = Comment::create($commentValidated);
 
-        return Comment::create($commentValidated);
+        return $comment->load('user');
     }
 
     /**
