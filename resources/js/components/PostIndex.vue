@@ -167,6 +167,7 @@
                         });
 
                         this.comments.unshift(data);
+                        this.comment.body = null;
                     })
                     .catch(({response}) => {
                         if ((response.status = 422)) {
