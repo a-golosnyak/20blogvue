@@ -2,7 +2,7 @@
     <div class="login-container ">
         <h3 class="mt-5 ml-3">Register</h3>
         <form role="" method="POST" action="/register" class="pt-0 mt-5">
-            <input type="hidden" name="_token" :value="csrf_token" >
+            <input type="hidden" name="_token" :value="csrf_token" required>
             <div class="form-control">
             <input id="email" type="email" name="email" placeholder="Email Address" required autofocus>
             </div>
@@ -41,9 +41,6 @@
         },
         created() {
           this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
-
-
-
           this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
           console.log('Logged in: ' + this.isLoggedIn );
         },

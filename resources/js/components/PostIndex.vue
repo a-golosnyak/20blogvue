@@ -11,9 +11,7 @@
                         <a class='none-decored' href='#'></a>
                     </h6>
                     <h5>{{ post.body }}</h5>
-                    <!--router-link :to="`/post/${post.id}/edit`">
-                        <button class="float-right ml-2">Edit</button>
-                    </router-link-->
+
                     <br>
                     <button
                         class="float-right ml-2"
@@ -81,13 +79,6 @@
             this.loadPost();
             this.loadPostComments();
         },
-/*
-        computed: {
-            hasComments(){
-                return !!this.comments && this.comments.length > 0;
-            }
-        },
-*/
         methods: {
             loadPost(){
                 axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
@@ -97,10 +88,15 @@
                         this.post = data;
                     })
                     .catch(({response}) => {
-                        this.$toast.error({
-                            title: 'Error!',
-                            message: 'Unable to load post',
-                        })
+                        if ((response.status = 422)) {
+                            this.errors = response.data;
+                            console.log(this.errors);
+
+                            this.$toast.error({
+                                title: 'Error!',
+                                message: this.errors.message,
+                            })
+                        }
                     })
             },
             editPost(){

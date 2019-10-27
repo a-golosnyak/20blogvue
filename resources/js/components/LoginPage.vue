@@ -37,15 +37,9 @@
     export default {
         data() {
             return {
-                csrf_token: 'null',
-                isLoggedIn: null,
                 email : "",
                 password : "",
             }
-        },
-        beforeCreate(){
-            this.csrf_token = document.querySelector('meta[name="csrf-token"]').content;
-            this.isLoggedIn = document.querySelector('meta[name="login-status"]').content;
         },
         methods: {
             handleLogin(){
@@ -60,14 +54,14 @@
                         message: data.token_type,
                     })
                     document.querySelector('meta[name="login-status"]').content = true;
-                    document.querySelector('meta[name="login-token"]').content = data.access_token;
+                    document.querySelector('meta[name="login-token"]').content = data.access_token;     // use for debug
 
                     window.localStorage.setItem('token', data.access_token)
                     window.localStorage.setItem('auth_user', data.user_id);
 //                  this.$router.go(-1);
                     location.href = '/';
 //                  this.$router.push('home');
-                    axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token');
+                    axios.defaults.headers.common['Authorization'] = 'Bearer ' +- window.localStorage.getItem('token');
                 })
                 .catch(({response}) => {
 

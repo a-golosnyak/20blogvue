@@ -22,8 +22,8 @@
                     v-if="loggedIn"
                     class="form-inline pull-right"
                 >
-                    <router-link :to="`/profile`">
-                        <a class="nav-link font-weight-bold" href="/profile">Profile</a>
+                    <router-link :to="`/user/${user_id}`">
+                        <a class="nav-link font-weight-bold" v-text="">Profile</a>
                     </router-link>
 
                     <span
@@ -52,6 +52,7 @@
 export default {
     data() {
         return {
+            user_id: null,
         }
     },
     props:{
@@ -64,6 +65,7 @@ export default {
     },
 
     created() {
+        this.user_id = window.localStorage.getItem('auth_user');
     },
     methods: {
         logOut() {

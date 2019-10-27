@@ -20,6 +20,16 @@ class UserController extends Controller
      * @var int
      */
     public $successStatus = 200;
+
+    /**
+     * @param User $user
+     * @return User|string
+     */
+    public function show(User $user)
+    {
+        return $user;
+    }
+
     /**
      * @param Request $request
      * @return JsonResponse
@@ -87,6 +97,10 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
     public function logout (Request $request) {
         $token = $request->user()->token();
         $token->revoke();

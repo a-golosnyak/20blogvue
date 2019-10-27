@@ -29,9 +29,21 @@ button {
   border-radius: 2px;
   font-weight: bold;
   font-size: 1rem;
+  height: 2rem;
 }
 
 button:hover{
   background-color: #666;
 }
 
+.text-sm{
+  font-size: 1.2em;
+}
+
+.text-md{
+  font-size: 1.5em;
+}
+
+.text-lg{
+  font-size: 1.8em;
+}

@@ -40,7 +40,7 @@ class PostController extends Controller
 
     /**
      * @param CreatePost $request
-     * @return mixed0
+     * @return mixed
      */
     public function store(CreatePost $request)
     {
