@@ -21,7 +21,7 @@
                 <div class="font-weight-bold mr-3">Emil: </div>
                 <div class="" v-text="user.email"></div>
             </div>
-            <div class="mt-2 d-flex flex-row ">
+            <div class="mt-2 d-flex flex-row text-xs">
                 <div class="font-weight-bold mr-3">Profile created: </div>
                 <div class="" v-text="user.created_at"></div>
             </div>
@@ -34,7 +34,11 @@
     </div>
 </template>
 
+
+
 <script>
+    import {format} from 'date-fns'
+
     export default {
         data() {
             return {
@@ -53,6 +57,7 @@
                    .get(`/api/user/${this.user_id}`)
                    .then(({data}) => {
                        this.user = data;
+                       this.user.created_at = format(this.user.created_at, 'YYYY-MM-DD HH:MM')
                    })
                    .catch(({error})=> {
                        console.log(error)

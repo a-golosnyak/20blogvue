@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\UpdateUser;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -28,6 +29,14 @@ class UserController extends Controller
     public function show(User $user)
     {
         return $user;
+    }
+
+    /**
+     *
+     */
+    public function update(UpdateUser $request, User $user)
+    {
+        $user->update($request->validated());
     }
 
     /**

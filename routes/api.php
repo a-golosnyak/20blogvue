@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::delete(  '/comment/{comment}', 'API\CommentController@destroy')->name('api.comment.destroy');
 
     Route::get(     '/user/{user}', 'API\UserController@show')->name('api.user.show');
-
-    Route::post('logout',   'API\UserController@logout');
+    Route::put(     '/user/{user}', 'API\UserController@update')->name('api.user.update');
+    Route::post(    'logout',   'API\UserController@logout');
 });
 
