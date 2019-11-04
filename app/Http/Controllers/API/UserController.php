@@ -46,9 +46,9 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|min:3|max:100',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:3|max:100',
             'password_confirmation' => 'required|same:password',
         ]);
 
@@ -116,5 +116,15 @@ class UserController extends Controller
 
         $response = 'You have been succesfully logged out!';
         return response($response, 200);
+    }
+
+    public function resetPassword(User $user, Request $request)
+    {
+        $request->validate([
+            'password'              => 'required',
+            'password_confirmation' => 'required|same:password'
+        ]);
+
+        return response()->json(tap($user)->forceFill(['password' =>$request['password']])->save(), 202);
     }
 }

@@ -87,7 +87,12 @@
                     v-model="password_confirmation"
                 >
             </div>
-            <button class="float-right ml-2 mb-3">Reset password</button>
+            <button
+                class="float-right ml-2 mb-3"
+                @click="resetPassword"
+            >
+                Reset password
+            </button>
         </div>
     </div>
 </template>
@@ -154,6 +159,31 @@
                         }
                     })
                     .finally(() => this.isLoading = false);
+            },
+            resetPassword() {
+              this.isLoading = true;
+              axios
+                .put(`/api/user/${this.user.id}/reset-password`, {
+                    'password': this.password,
+                    'password_confirmation': this.password_confirmation
+                })
+                .then(() => {
+                    this.$toast.success({
+                        title: 'Success!',
+                        message: 'Password updated.',
+                    })
+                    this.$router.go(-1)
+                })
+                .catch(({response}) => {
+                  if (response.status === 422) {
+                    this.errors = response.data;
+                    this.$toast.error({
+                        title: 'Error!',
+                        message: this.errors.message,
+                    })
+                  }
+                })
+                .finally(() => this.isLoading = false);
             },
         }
     }

@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', 'API\UserController@register');
 Route::post('login',    'API\UserController@login');
 
-
-
 Route::get(     '/post',       'API\PostController@index')->name('api.post.index');
 
 Route::group(['middleware' => 'auth:api'], function() {
@@ -33,6 +31,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get(     '/user/{user}', 'API\UserController@show')->name('api.user.show');
     Route::put(     '/user/{user}', 'API\UserController@update')->name('api.user.update');
+    Route::put(     '/user/{user}/reset-password', 'API\UserController@resetPassword')->name('api.user.reset-password');
     Route::post(    'logout',   'API\UserController@logout');
 });
 

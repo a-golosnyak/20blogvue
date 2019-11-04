@@ -64,7 +64,6 @@
                     axios.defaults.headers.common['Authorization'] = 'Bearer ' +- window.localStorage.getItem('token');
                 })
                 .catch(({response}) => {
-
                     this.$toast.error({
                         title: 'Error!',
                         message: this.errors.message,
