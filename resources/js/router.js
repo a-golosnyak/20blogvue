@@ -23,13 +23,13 @@ let router = new VueRouter({
         {
             path: '/user/:id',
             component: UserIndex,
-            name: 'post.edit',
+            name: 'user.index',
             props: true,
         },
         {
             path: '/user/:id/edit',
             component: UserUpdate,
-            name: 'post.edit',
+            name: 'user.edit',
             props: true,
         },
 

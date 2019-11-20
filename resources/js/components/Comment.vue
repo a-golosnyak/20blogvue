@@ -23,7 +23,7 @@
             <button
                 v-if="editing"
                 class="px-3"
-                @click="editing = false"
+                @click="cancel"
                 :disabled="isLoading"
             >Cancel
             </button>
@@ -48,8 +48,6 @@
                 @click="editing = !editing"
             >Edit
             </button>
-
-
         </div>
     </div>
 </template>
@@ -60,6 +58,7 @@
         data () {
             return {
                 editing: false,
+                body: '',
             }
         },
         props:{
@@ -73,11 +72,23 @@
             },
         },
         created(){
+            this.body = this.comment.body;
         },
+        beforeRouteEnter(from, to, next) {
+            next(vm => vm.handleBeforeRoute());
+        },
+
         methods: {
+            handleBeforeRoute() {
+                this.body = this.comment.body;
+            },
             saveComment(newComment){
                 this.$emit("update", newComment);
                 this.editing = false;
+            },
+            cancel(){
+                this.editing = false;
+                this.comment.body = this.body;
             }
         },
     }

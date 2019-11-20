@@ -15,7 +15,7 @@
             >
             </textarea>
             <textarea
-                class="input-box"
+                class="input-box"php
                 v-model="post.body"
                 placeholder="Post"
                 rows="8"
