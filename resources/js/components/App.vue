@@ -14,8 +14,8 @@
     </div>
 </template>
 <script>
-    import Header from './Header.vue';
-    import Navigation from './Navigation.vue';
+    import Header from './router/page/Header.vue';
+    import Navigation from './router/page/Navigation.vue';
 
     export default {
         components: {

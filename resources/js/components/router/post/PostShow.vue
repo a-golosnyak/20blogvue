@@ -50,10 +50,10 @@
 
 <script>
     import axios from 'axios';
-    import CommentList from './CommentList'
+    import CommentList from '../comment/CommentList'
 
     export default {
-        name: 'PostIndex',
+        name: 'PostShow',
         components:{
           CommentList,
         },
