@@ -8,7 +8,7 @@ import PostShow from './components/router/post/PostShow.vue';
 import PostCreateUpdate from './components/router/post/PostCreateUpdate.vue';
 import LoginPage from './components/router/page/LoginPage.vue';
 import RegisterPage from './components/router/page/RegisterPage.vue';
-import UserIndex from './components/router/user/UserIndex.vue';
+import UserIndex from './components/router/user/UserShow.vue';
 import UserUpdate from './components/router/user/UserUpdate.vue';
 
 let router = new VueRouter({
