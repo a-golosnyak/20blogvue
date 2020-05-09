@@ -23,34 +23,34 @@
             <div
                 v-if='isAuthor'
             >
-                <button
+                <b-button
                     v-if="editing"
                     class="px-3"
                     @click="cancel"
                     :disabled="isLoading"
                 >Cancel
-                </button>
-                <button
+                </b-button>
+                <b-button
                     v-else
                     class="px-3"
                     @click="$emit('delete', comment.id)"
                     :disabled="isLoading"
                 >Delete
-                </button>
+                </b-button>
 
-                <button
+                <b-button
                     v-if="editing"
                     class="px-4 ml-2"
                     @click="saveComment(comment)"
                     :disabled="isLoading"
                 >Save
-                </button>
-                <button
+                </b-button>
+                <b-button
                     v-else
                     class="ml-2"
                     @click="editing = !editing"
                 >Edit
-                </button>
+                </b-button>
             </div>
         </div>
     </div>

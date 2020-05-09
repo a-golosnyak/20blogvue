@@ -16,15 +16,15 @@
                     <div
                         v-if='isAuthor'
                     >
-                        <button
+                        <b-button
                             class="float-right ml-2"
                             @click="editPost"
                         >Edit
-                        </button>
-                        <button
+                        </b-button>
+                        <b-button
                             class="float-right"
                             @click="deletePost"
-                        >Delete</button>
+                        >Delete</b-button>
                     </div>
                     <h5
                         class="mt-5"
@@ -35,11 +35,11 @@
                             class="w-100 border-radius-3"
                             v-model="comment.body"
                         ></textarea>
-                        <button
+                        <b-button
                             class="float-right mt-2"
                             :disabled="isLoading"
                             @click="SendComment">Send
-                        </button>
+                        </b-button>
                     </div>
                     <br style="clear: both;" >
                     <br>

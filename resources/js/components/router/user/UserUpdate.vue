@@ -49,18 +49,18 @@
             </div>
 
 
-            <button
+            <b-button
                 class="float-right ml-2 mb-3"
                 @click="updateUser"
             >Save
-            </button>
+            </b-button>
 
-            <button
+            <b-button
                 class="float-right px-3"
                 @click="$router.go(-1)"
                 :disabled="isLoading"
             >Cancel
-            </button>
+            </b-button>
         </div>
 
         <hr style="clear:both;">
@@ -87,12 +87,12 @@
                     v-model="password_confirmation"
                 >
             </div>
-            <button
+            <b-button
                 class="float-right ml-2 mb-3"
                 @click="resetPassword"
             >
                 Reset password
-            </button>
+            </b-button>
         </div>
     </div>
 </template>

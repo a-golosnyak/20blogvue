@@ -12,10 +12,17 @@ import router from './router.js';
 import Toast from 'cxlt-vue2-toastr'
 import 'cxlt-vue2-toastr/dist/css/cxlt-vue2-toastr.css'
 //import store from './store';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 window.Vue = require('vue');
 
-Vue.use(Toast, { position: 'bottom right', showDuration: 3000 })
+Vue.use(Toast, { position: 'bottom right', showDuration: 3000 });
+// Install BootstrapVue
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

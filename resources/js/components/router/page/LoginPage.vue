@@ -2,7 +2,7 @@
     <div id="login" class="login-container ">
         <h3 class="mt-5 ml-3">Login</h3>
         <form role="" method="POST" action="/login" class="pt-0 mt-5">
-            <div class="form-control">
+            <div class="">
                 <input
                     id="email"
                     type="email"
@@ -13,7 +13,7 @@
                     v-model="email"
                 >
             </div>
-            <div class="form-control">
+            <div class="mt-4">
                 <input
                     id="password"
                     type="password"
@@ -23,11 +23,11 @@
                     v-model="password"
                 >
             </div>
-            <div class="form-control">
+            <div class="mt-4">
                 <input type='checkbox' name='remember'> Remember me
             </div>
-            <div class="form-control pt-4">
-                <button type="button" @click="handleLogin">Log in</button>
+            <div class="mt-4">
+                <b-button type="button" @click="handleLogin">Log in</b-button>
             </div>
         </form>
     </div>

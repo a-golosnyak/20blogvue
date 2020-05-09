@@ -81,7 +81,7 @@
                                 <input id="name" type="name" name="name" placeholder="Name" required>
                             </div>
                             <div class="form-control pt-4">
-                                <button type="submit" @click="handleSubmit">Register</button>
+                                <b-button type="submit" @click="handleSubmit">Register</b-button>
                             </div>
                         </form>
                     </div>

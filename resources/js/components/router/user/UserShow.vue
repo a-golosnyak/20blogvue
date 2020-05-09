@@ -29,7 +29,7 @@
         <hr>
 
        <router-link :to="`/user/${user.id}/edit`">
-            <button class="float-right ml-2">Edit</button>
+            <b-button class="float-right ml-2">Edit</b-button>
         </router-link>
     </div>
 </template>

@@ -2,7 +2,7 @@
     <div class="login-container ">
         <h3 class="mt-5 ml-3">Register</h3>
         <form role="" method="POST" action="/register" class="pt-0 mt-5">
-            <div class="form-control">
+            <div class="">
             <input
                 id="email"
                 type="email"
@@ -12,7 +12,7 @@
                 autofocus
                 v-model="email">
             </div>
-            <div class="form-control mb-3">
+            <div class="mt-4">
                 <input
                     id="password"
                     type="password"
@@ -21,7 +21,7 @@
                     required
                     v-model="password">
             </div>
-            <div class="form-control">
+            <div class="mt-4">
                 <input
                     id="password_confirm"
                     type="password"
@@ -31,7 +31,7 @@
                     v-model="password_confirmation"
                 >
             </div>
-            <div class="form-control">
+            <div class="mt-4">
                 <input
                     id="name"
                     type="name"
@@ -41,12 +41,12 @@
                     v-model="name"
                 >
             </div>
-            <div class="form-control pt-4">
-                <button
+            <div class="mt-4">
+                <b-button
                     type="button"
                     @click="handleRegister"
                 >Register
-                </button>
+                </b-button>
             </div>
         </form>
 

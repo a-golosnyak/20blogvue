@@ -22,22 +22,22 @@
             >
             </textarea>
 
-            <button
+            <b-button
                 :disabled="isLoading"
                 type="submit"
                 class="float-right"
             >
                 <span v-if="isUpdate">Edit</span>
                 <span v-else>Save</span>
-            </button>
+            </b-button>
 
-            <button
+            <b-button
                 :disabled="isLoading"
                 class="float-right mr-2"
                 @click="$router.go(-1)"
             >
                 <span class="">Cancel</span>
-            </button>
+            </b-button>
         </form>
     </div>
 </template>

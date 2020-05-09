@@ -1,13 +1,16 @@
 <template>
     <div class='row'>
-        <div class='col-md-9 blog-main '>
-            <div class='blog-post'>
+        <div class='col-md-9 '>
+            <div class=''>
                 <div
                     v-for="post in posts"
                     class='container-fluid p-4'
                 >
-                    <router-link :to="`/post/${post.id}`">
-                        <h2 class='blog-post-title'>{{ post.title }}</h2>
+                    <router-link
+                        :to="`/post/${post.id}`"
+                        class="non-decorated"
+                    >
+                        <h2 class=''>{{ post.title }}</h2>
                     </router-link>
 
                     <p class='blog-post-meta' v-if="post.user">{{ post.created_at}} author {{  post.user.name}}<a class='none-decored' href='#'></a>
@@ -15,7 +18,7 @@
                     <br>
                     <div class='post-footer'>
                         <router-link :to="`/post/${post.id}`">
-                            <button class="">More...</button>
+                            <b-button class="">More...</b-button>
                         </router-link>
 
                         <!--a href="/delete/" class="float-left mr-2"><button class="">Edit</button></a>
@@ -67,19 +70,5 @@ export default {
 </script>
 
 <style>
-    .blog-post {
-        margin-top: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .blog-post-title {
-        margin-bottom: .25rem;
-        color: #505050;
-    }
-
-    .blog-post-meta {
-        margin-bottom: 1.25rem;
-        color: #999;
-    }
 
 </style>

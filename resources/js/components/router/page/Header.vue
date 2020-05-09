@@ -1,10 +1,8 @@
 <template>
     <div class="blog-header">
         <div class="container">
-            <h2 class="blog-title">
-                <!--a class='none-decored' href="/">The Blog</a-->
-            </h2>
-            <!--p class="lead blog-description">Блог для людей, интерисующихся электроникой.</p-->
+            <a class='non-decorated blog-title' href="/">Electro Blog</a>
+            <p class=" blog-description">Блог разработчика электроники.</p>
         </div>
     </div>
 </template>
@@ -26,24 +24,15 @@
 
     .blog-title {
         margin-bottom: 0;
-        font-size: 3rem;
-        font-weight: normal;
-        color: #404040;
+        font-size: 4rem;
+        font-weight: 500;
+        color: #202020;
     }
 
     .blog-description {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        font-weight: 500;
         color: #999;
-    }
-
-    .none-decored{
-        color: inherit;
-        text-decoration: none;
-    }
-
-    a:focus, a:hover {
-        color: inherit;
-        text-decoration: none;
     }
 
 </style>
