@@ -11,7 +11,6 @@
 
 </script>
 
-
 <style>
     .blog-header {
         padding-top: 1.5rem;
