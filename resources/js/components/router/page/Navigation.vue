@@ -71,6 +71,7 @@ export default {
     computed: {
     },
 
+
     created() {
         this.user_id = window.localStorage.getItem('auth_user');
     },
